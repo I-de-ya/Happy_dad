@@ -3,4 +3,3 @@ class DevicesController < ApplicationController
 	def new
 		@device = Device.new
 	end
-end
