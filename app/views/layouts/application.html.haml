@@ -1,0 +1,12 @@
+!!!
+%html
+	%head
+		%title HappyDad
+		= stylesheet_link_tag    "application"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+	%body
+		= render 'layouts/menu'
+		= yield
+	%footer
+		Happy dad© 2011 I-de-ya

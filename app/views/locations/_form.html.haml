@@ -1,0 +1,8 @@
+= form_for @location do |f|
+	= f.text_field :title
+	%table
+		- for status in Status.all
+			%tr
+				%td= check_box_tag "location[status_ids][]", status.id, @location.statuses.include?(status)
+				%td= status.title
+	= f.submit "Подтвердить"

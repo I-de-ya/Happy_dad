@@ -1,0 +1,8 @@
+%p
+	%b Наименование местоположения:
+	= @location.title
+	%ul
+	- @statuses.each do |status|
+		%li= status.title
+= link_to 'Редактировать', edit_location_path(@location)
+%p= link_to '<< Назад, к списку местоположений', locations_path

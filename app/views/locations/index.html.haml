@@ -1,0 +1,12 @@
+%h1 Список всех местоположений
+%table
+	%tr
+		%th Местонахождение
+		%th
+		%th
+	- @locations.each do |location|
+		%tr
+			%td= link_to location.title, location_path(location)
+			%td= link_to 'Редактировать', edit_location_path(location)
+			%td= link_to 'Удалить', location, :confirm => 'Вы уверены?', :method => :delete
+= link_to 'Добавить местоположение', new_location_path

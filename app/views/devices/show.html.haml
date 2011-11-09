@@ -1,0 +1,53 @@
+%h3 Менюха (поля карточки)
+%ul
+	%li Идентификационные данные
+	%li История
+	%ul
+		%li История смены статусов
+		%li История изменения атрибутов
+%h1 Карточка СИ
+%p
+	%b Наименование СИ:
+	%br= @device.title
+%p
+	%b Местонахождение СИ:
+	%br= @device.location
+%p
+	%b Статус СИ:
+	%br= @device.status
+%p
+	%b Уникальный номер:
+	%br= @device.uniq_number
+%p
+	%b Тип СИ:
+	%br= @device.device_type
+%p
+	%b Вид МР (метрологической работы):
+	%br= @device.form_of_mr
+%p
+	%b Инвентарный номер:
+	%br= @device.inventory_number
+%p
+	%b Заводской номер:
+	%br= @device.serial_number
+%p
+	%b Подразделение МР:
+	%br= @device.mr_unit
+%p
+	%b Дата последней МР:
+	%br= @device.prev_mr_date
+%p
+	%b Дата следующей МР:
+	%br= @device.next_mr_date
+%p
+	%b Участок автоматизации:
+	%br= @device.mr_unit
+%p
+	%b Технологический агрегат:
+	%br= @device.tech_unit
+%p
+	%b Параметр взаимозаменяемости:
+	%br= @device.replace_param
+	
+= link_to 'Редактировать', edit_device_path(@device)
+= link_to 'Назад к приборам', devices_path
