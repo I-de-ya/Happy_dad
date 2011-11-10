@@ -4,7 +4,11 @@ HappyDad::Application.routes.draw do
 
 	resources :locations
 	resources :statuses
-	resources :devices
+	resources :devices do
+		member do
+			get 'replacement_candidates'
+		end
+	end
 	resources :replacement_pairs
 
 	root :to => "devices#index"

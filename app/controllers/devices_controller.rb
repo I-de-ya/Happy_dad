@@ -49,13 +49,13 @@ class DevicesController < ApplicationController
   	redirect_to devices_path
 	end
 	
-=begin	
-	def replacement
+	def replacement_candidates
 		@device = Device.find(params[:id])
-		session[:remember_token] = @device.id
-		@devices = Device.where(:factor => @device.factor).where( "id IS NOT ?", @device.id)
+		session[:current_device_id] = @device.id
+		@devices = Device.where(:replace_param => @device.replace_param) - [@device]
 	end
 	
+=begin	
 	def replacementshow
 		@device = Device.find(params[:id])
 		#device = Device.find(params[:id])
@@ -75,9 +75,9 @@ class DevicesController < ApplicationController
 	def replacementcouples
 		@devices = Device.where( "replacement_id IS NOT NULL")
 	end
-	
 =end
-	
+
+=begin	
 	private
 	
 	def sort_column
@@ -87,4 +87,5 @@ class DevicesController < ApplicationController
 	def sort_direction
 		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 	end
+=end
 end

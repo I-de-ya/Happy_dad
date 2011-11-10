@@ -1,6 +1,6 @@
 %h1 Список всех приборов
-Тут должно быть поиску: [поле [v]][запрос][поиск]
-%p= link_to 'Новый прибор', new_device_path
+Сейчас мы ищем замену для прибора:
+=@device.title
 %table
 	%tr
 		%th "Уникальный номер"??(не device.id)
@@ -20,7 +20,8 @@
 		%th "Взаимозаменяемость данного прибора"(здесь будут ссылки на подбор возможных замен)
 		%th ??
 		%th ??
-
+		%th 
+		
 	- @devices.each do |device|
 		%tr
 			%td= link_to device.title, device_path(device)
@@ -36,9 +37,10 @@
 			%td
 			%td
 			%td
-			%td= device.replace_param
 			%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
+			%td
 			%td= link_to 'Редактировать', edit_device_path(device)
 			%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
+			%td= link_to 'Подходит для замены', '#'
 %p Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
 %p P.S. ?? - это поле возможно будет, а возможно и нет
