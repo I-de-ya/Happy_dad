@@ -3,13 +3,25 @@ HappyDad::Application.routes.draw do
   # first created -> highest priority.
 
 	resources :locations
+	
 	resources :statuses
+	
 	resources :devices do
 		member do
 			get 'replacement_candidates'
+			get 'make_replacement_pair'
+			get 'delete_replacement'
+		end
+		collection do
+			get 'replacements_list'
 		end
 	end
-	resources :replacement_pairs
+	
+	resources :replacement_pairs do
+		member do
+			post 'create_replacement_pair'
+		end
+	end
 
 	root :to => "devices#index"
   # Sample of regular route:

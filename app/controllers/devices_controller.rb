@@ -5,6 +5,18 @@ class DevicesController < ApplicationController
 		@devices = Device.order(sort_column + " " + sort_direction)
 	end
 	
+	def replacements_list
+		@devices = Device.where(:has_replacement=>true)
+	end
+	
+	def delete_replacement
+		device = Device.find(params[:id])
+		device.replacement_id = nil
+		device.has_replacement = nil
+		device.save
+		redirect_to replacements_list_devices_path
+	end
+	
 	def new
 		@device = Device.new
 	end
@@ -55,7 +67,16 @@ class DevicesController < ApplicationController
 		@devices = Device.where(:replace_param => @device.replace_param) - [@device]
 	end
 	
-
+	def make_replacement_pair
+		replacement = Device.find(params[:id])
+		device = Device.find(session[:current_device_id])
+		device.replacement_id = replacement.id
+		device.has_replacement = true
+		device.save
+		session[:current_device_id] = nil
+		redirect_to replacements_list_devices_path
+	end
+	
 	private
 	
 	def sort_column

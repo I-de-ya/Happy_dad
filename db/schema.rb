@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109153917) do
+ActiveRecord::Schema.define(:version => 20111110205715) do
 
   create_table "devices", :force => true do |t|
     t.string   "title"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20111109153917) do
     t.string   "tech_unit"
     t.integer  "replace_param"
     t.boolean  "form_of_mr"
+    t.integer  "replacement_id"
+    t.boolean  "has_replacement"
   end
 
   create_table "location_statuses", :force => true do |t|

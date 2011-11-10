@@ -41,6 +41,6 @@
 			%td
 			%td= link_to 'Редактировать', edit_device_path(device)
 			%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
-			%td= link_to 'Подходит для замены', '#'
+			%td= link_to 'Подходит для замены', make_replacement_pair_device_path(device)
 %p Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
 %p P.S. ?? - это поле возможно будет, а возможно и нет

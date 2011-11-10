@@ -1,0 +1,13 @@
+%h1 Список замен
+%table
+	%tr
+		%th Наименование устройства
+		%th Наименование замены
+		%th Чекбоксик (есть ли на складе?)
+		%th 
+	- @devices.each do |device|
+		%tr
+			%td= device.title
+			%td= device.replacement.title
+			%td [ ] - чекбоксик
+			%td= link_to 'Удалить пару', delete_replacement_device_path(device)
