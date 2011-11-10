@@ -77,7 +77,7 @@ class DevicesController < ApplicationController
 	end
 =end
 
-=begin	
+begin	
 	private
 	
 	def sort_column
@@ -87,5 +87,5 @@ class DevicesController < ApplicationController
 	def sort_direction
 		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 	end
-=end
+end
 end
