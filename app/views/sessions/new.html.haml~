@@ -1,0 +1,12 @@
+﻿%h1 Авторизация
+= form_for(:session, :url => sessions_path) do |f|
+	.field
+		= f.label :email
+		= f.text_field :email
+	.field
+		= f.label :Пароль
+		= f.password_field :password
+	.actions
+		= f.submit "Войти"
+%b= link_to "Зарегистрироваться", signup_path	
+		

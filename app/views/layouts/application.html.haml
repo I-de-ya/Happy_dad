@@ -6,7 +6,16 @@
 		= javascript_include_tag "application"
 		= csrf_meta_tags
 	%body
+		= render 'layouts/header'
 		= render 'layouts/menu'
+
+		- flash.each do |key, value|
+			- if key == :notice
+				= value
+			- else
+				.flash 
+					= key
+					= value
 		= yield
 	%footer
 		Happy dad© 2011 I-de-ya

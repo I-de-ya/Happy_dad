@@ -22,6 +22,12 @@ HappyDad::Application.routes.draw do
 			post 'create_replacement_pair'
 		end
 	end
+	resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
+
+  match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
 
 	root :to => "devices#index"
   # Sample of regular route:
