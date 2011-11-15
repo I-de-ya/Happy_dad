@@ -15,6 +15,8 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'to_xls'
+gem 'will_paginate'
 gem 'haml'
 gem 'jquery-rails'
 

@@ -2,11 +2,17 @@
 class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	def index
-		@devices = Device.order(sort_column + " " + sort_direction)
+		@page = params[:page]
+		@devices = Device.paginate(:page => params[:page], :per_page => 1)
 	end
 	
 	def replacements_list
 		@devices = Device.where(:has_replacement=>true)
+	
+		respond_to do |format|
+			format.html
+			format.xls { send_data @devices.to_xls, :filename => 'device_replacements.xls'}
+		end
 	end
 	
 	def delete_replacement
