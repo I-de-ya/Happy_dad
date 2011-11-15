@@ -1,0 +1,6 @@
+- if signed_in?
+	= @current_user.name
+	= link_to "Выйти", signout_path, :method => :delete
+- else
+	= link_to "Войти", signin_path
+	= link_to "Регистрация", signup_path

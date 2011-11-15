@@ -1,0 +1,25 @@
+!!!
+%html
+	%head
+		%title HappyDad
+		= stylesheet_link_tag    "application"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+	%body
+		= render 'layouts/header'
+		- if signed_in?
+			= link_to "Выйти", signout_path, :method => :delete
+		- else
+			= link_to "Войти", signin_path
+		= render 'layouts/menu'
+
+		- flash.each do |key, value|
+			- if key == :notice
+				= value
+			- else
+				.flash 
+					= key
+					= value
+		= yield
+	%footer
+		Happy dad© 2011 I-de-ya
