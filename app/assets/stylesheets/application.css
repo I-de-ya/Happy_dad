@@ -6,6 +6,7 @@
  *= require_tree . 
 */
 
+
 footer{
 	text-align:center;
 }
@@ -33,19 +34,21 @@ a	{
 	width:140px;
 	border:solid 1px;
 }
-
+.scroll{
+	overflow-x:scroll; 
+}
 table{
 	width: 100%;
 	border: 2px black;
 	border-collapse: collapse;
-	background-color: #FFFFFF;    
+	background-color: #FFFFFF;   
 }
 
 th{ 
 	text-align: center;
 	border: 2px solid black; 
-	background-color: #232323;
-	color: #DCDCDC;
+	background-color: #BABABA;
+	color: black;
 }
 
 th a:visited { 
