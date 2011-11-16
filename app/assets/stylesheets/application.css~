@@ -17,9 +17,14 @@ li{
 
 a	{
 	text-decoration: none;
-	color: blue;
+	color: black;
 }
-
+a:hover{
+	text-decoration: underline;
+}
+.center{
+	text-align:center;
+}
 .account{
 	float:right;
 }
@@ -27,16 +32,38 @@ a	{
 .menu{
 	white-space: nowrap;
 	text-align:center;
+	background-color:#393939;
 }
 
 .menu li{
 	display:inline-block;
-	width:140px;
-	border:solid 1px;
+	width:160px;
+	padding:10px;
 }
+
+.menu a{
+	color:white;
+	font-size:16pt;
+}
+.menu a:hover{
+	text-decoration: none;
+}
+.menu a:visited { 
+	color:white;
+} 
+
+.menu li:hover {
+	background-color: black;
+}
+
 .scroll{
-	overflow:scroll; 
+	overflow-x:scroll; 
 }
+
+.search{
+	float:right;
+}
+
 table{
 	width: 100%;
 	border: 2px black;
@@ -50,14 +77,6 @@ th{
 	background-color: #BABABA;
 	color: black;
 }
-
-th a:visited { 
-	color: #DCDCDC;
-} 
-
-th a{ 
-	color: #DCDCDC;
-} 
    
 td{ 
 	border: 2px solid black;

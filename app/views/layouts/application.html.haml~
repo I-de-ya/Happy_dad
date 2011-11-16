@@ -7,7 +7,7 @@
 		= csrf_meta_tags
 	%body
 		= render 'layouts/header'
-
+		
 		- flash.each do |key, value|
 			- if key == :notice
 				= value
