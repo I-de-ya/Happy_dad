@@ -11,7 +11,7 @@ class DevicesController < ApplicationController
 	
 		respond_to do |format|
 			format.html
-			format.xls { send_data @devices.to_xls, :filename => 'device_replacements.xls'}
+			format.xls { send_data @devices.to_xls(:columns => [:title, {:replacement => [:title]}], :headers => ["С позиции", "На позицию"]), :filename => 'Замены приборов.xls'}
 		end
 	end
 	
