@@ -1,5 +1,15 @@
-- if signed_in?
-	= link_to "Выйти", signout_path, :method => :delete
-- else
-	= link_to "Войти", signin_path
-	= link_to "Регистрация", signup_path
+%header
+	.right
+		- if signed_in?
+			= @current_user.name
+			= link_to "Выйти", signout_path, :method => :delete
+		- else
+			= link_to "Войти", signin_path
+			= link_to "Регистрация", signup_path
+	%br
+		.menu
+			%ul
+				%li= link_to "Приборы", devices_path
+				%li= link_to "Замены", replacements_list_devices_path
+				%li= link_to "Местоположения", locations_path
+				%li= link_to "Статусы", statuses_path

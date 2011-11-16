@@ -7,10 +7,6 @@
 		= csrf_meta_tags
 	%body
 		= render 'layouts/header'
-		- if signed_in?
-			= link_to "Выйти", signout_path, :method => :delete
-		- else
-			= link_to "Войти", signin_path
 		= render 'layouts/menu'
 
 		- flash.each do |key, value|

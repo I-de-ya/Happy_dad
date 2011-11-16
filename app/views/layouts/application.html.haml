@@ -7,7 +7,8 @@
 		= csrf_meta_tags
 	%body
 		= render 'layouts/header'
-		= render 'layouts/menu'
+		%p
+			= render 'layouts/menu'
 
 		- flash.each do |key, value|
 			- if key == :notice
