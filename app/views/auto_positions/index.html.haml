@@ -1,0 +1,33 @@
+%h1.center Список всех позиций автоматизации
+%p= link_to 'Новая позиция', "#"
+%p= link_to 'Импортировать базу из файла', "#"
+.scroll
+	%table
+		%tr
+			%th "Обозначение позиции"
+			%th "Проект, спецификация проекта"
+			%th "Установка, технологический агрегат"
+			%th "Участок, здание"
+			%th "Функция"
+			%th	"Наименование параметра"
+			%th	"Диапазон изменения параметра"
+			%th "Единицы измерения параметра"
+			%th "Прибор на позиции" ??
+			%th ??
+			%th ??
+
+		- @auto_positions.each do |position|
+			%tr
+				%td= position.title
+				%td= position.project_specification
+				%td= position.technological_unit
+				%td= position.automation_area
+				%td= position.function
+				%td= position.parameter_name
+				%td= position.parameter_range
+				%td= position.parameter_measurement_units
+				%td
+				%td= link_to 'Редактировать', '#'
+				%td= link_to 'Удалить', '#'
+
+%p P.S. ?? - это поле возможно будет, а возможно и нет

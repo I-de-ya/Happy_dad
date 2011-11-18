@@ -1,7 +1,10 @@
 HappyDad::Application.routes.draw do
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+	resources :auto_positions
+	
 	resources :locations
 	
 	resources :statuses
@@ -17,11 +20,6 @@ HappyDad::Application.routes.draw do
 		end
 	end
 	
-	resources :replacement_pairs do
-		member do
-			post 'create_replacement_pair'
-		end
-	end
 	resources :users
   resources :sessions, :only => [:new, :create, :destroy]
 

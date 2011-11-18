@@ -56,10 +56,11 @@ class DevicesController < ApplicationController
 		@device = Device.find(params[:id])
 	end
 
+=begin
 	def delete
   	@speech = Speech.find(params[:id])
   end
-
+=end
 	def destroy
 		@device = Device.find(params[:id]).destroy
 
