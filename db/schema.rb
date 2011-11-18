@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118193136) do
+ActiveRecord::Schema.define(:version => 20111118224836) do
 
   create_table "auto_positions", :force => true do |t|
     t.string   "title"
@@ -49,6 +49,25 @@ ActiveRecord::Schema.define(:version => 20111118193136) do
     t.string   "output_measurement_units"
     t.string   "model"
     t.integer  "uniq_number_in_ASOMI"
+    t.date     "year_of_production"
+    t.date     "beginning_operation_year"
+    t.string   "changeover_input_range"
+    t.string   "changeover_input_measurement_units"
+    t.string   "passport"
+    t.string   "passport_store_place"
+    t.string   "passport_electronic_version"
+    t.string   "tech_description"
+    t.string   "tech_description_store_place"
+    t.string   "tech_description_electronic_version"
+    t.string   "user_manual"
+    t.string   "user_manual_store_place"
+    t.string   "user_manual_electronic_version"
+    t.float    "gold"
+    t.float    "silver"
+    t.float    "platinum"
+    t.float    "PG_metals"
+    t.string   "subreport_number"
+    t.string   "ENS_number"
   end
 
   create_table "location_statuses", :force => true do |t|
