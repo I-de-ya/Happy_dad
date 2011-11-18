@@ -5,7 +5,7 @@
 .scroll
 	%table
 		%tr
-			%th "Уникальный номер"??(не device.id)
+			%th "Уникальный номер в АСОМИ"??
 			%th "Наименование СИ"
 			%th "Тип СИ"
 			%th "Вид МР"
@@ -18,26 +18,28 @@
 			%th "Дата следующей МР"
 			%th "Участок автоматизации"
 			%th "Технологический агрегат"
+			%th "Позиция"
 			%th "Параметр заменяемости"
-			%th "Взаимозаменяемость данного прибора"(здесь будут ссылки на подбор возможных замен)
+			%th "Взаимозаменяемость данного прибора"
 			%th ??
 			%th ??
 
 		- @devices.each do |device|
 			%tr
+				%td= device.uniq_number_in_ASOMI
 				%td= link_to device.title, device_path(device)
-				%td
-				%td
-				%td
-				%td
-				%td
-				%td
-				%td
-				%td
-				%td
-				%td
-				%td
-				%td
+				%td= device.device_type
+				%td= device.form_of_mr
+				%td= device.inventory_number
+				%td= device.serial_number
+				%td= #device.status.title
+				%td= device.mr_unit
+				%td= #device.location.title
+				%td= device.prev_mr_date
+				%td= device.next_mr_date
+				%td= device.auto_position ? device.auto_position.automation_area : "-"
+				%td= device.auto_position ? device.auto_position.technological_unit : "-"
+				%td= device.auto_position ? device.auto_position.title : "-"
 				%td= device.replace_param
 				%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
 				%td= link_to 'Редактировать', edit_device_path(device)

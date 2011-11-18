@@ -1,6 +1,7 @@
 class Device < ActiveRecord::Base
 	belongs_to :status
 	belongs_to :location
+	has_one :auto_position
 	
 	belongs_to :replacement, :class_name => "Device", :foreign_key => "replacement_id"
 	

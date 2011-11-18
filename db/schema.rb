@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115153742) do
+ActiveRecord::Schema.define(:version => 20111118193136) do
+
+  create_table "auto_positions", :force => true do |t|
+    t.string   "title"
+    t.string   "project_specification"
+    t.string   "technological_unit"
+    t.string   "automation_area"
+    t.string   "function"
+    t.string   "parameter_name"
+    t.string   "parameter_range"
+    t.string   "parameter_measurement_units"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "device_id"
+  end
 
   create_table "devices", :force => true do |t|
     t.string   "title"
@@ -19,19 +33,22 @@ ActiveRecord::Schema.define(:version => 20111115153742) do
     t.datetime "updated_at"
     t.integer  "status_id"
     t.integer  "location_id"
-    t.integer  "uniq_number"
     t.string   "device_type"
     t.integer  "inventory_number"
     t.integer  "serial_number"
     t.string   "mr_unit"
     t.date     "next_mr_date"
     t.date     "prev_mr_date"
-    t.string   "site"
-    t.string   "tech_unit"
     t.integer  "replace_param"
     t.boolean  "form_of_mr"
     t.integer  "replacement_id"
     t.boolean  "has_replacement"
+    t.string   "input_range"
+    t.string   "input_measurement_units"
+    t.string   "output_range"
+    t.string   "output_measurement_units"
+    t.string   "model"
+    t.integer  "uniq_number_in_ASOMI"
   end
 
   create_table "location_statuses", :force => true do |t|

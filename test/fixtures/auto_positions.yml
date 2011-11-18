@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  project_specification: MyString
+  technological_unit: MyString
+  automation_area: MyString
+  function: MyString
+  parameter_name: MyString
+  parameter_range: MyString
+  parameter_measurement_units: MyString
+
+two:
+  title: MyString
+  project_specification: MyString
+  technological_unit: MyString
+  automation_area: MyString
+  function: MyString
+  parameter_name: MyString
+  parameter_range: MyString
+  parameter_measurement_units: MyString

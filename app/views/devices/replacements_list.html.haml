@@ -1,14 +1,55 @@
 %h1 Список замен
 = link_to 'Скачать список замен в формате xls', 'replacements_list.xls'
-%table
-	%tr
-		%th Наименование устройства
-		%th Наименование замены
-		%th Чекбоксик (есть ли на складе?)
-		%th 
-	- @devices.each do |device|
+.scroll
+	%table
 		%tr
-			%td= device.title
-			%td= device.replacement.title
-			%td [ ] - чекбоксик
-			%td= link_to 'Удалить пару', delete_replacement_device_path(device)
+			%th{"rowspan" => "2"} № п/п
+			%th{"rowspan" => "2"} Участок
+			%th{"rowspan" => "2"} Агрегат
+			%th{"rowspan" => "2"} Позиция
+			%th{"colspan" => "7"} Снять с позиции
+			%th{"colspan" => "10"} Установить на позицию
+			%th{"rowspan" => "2"} Чекбоксик (есть ли на складе?)??
+			%th{"rowspan" => "2"} 
+		%tr
+			%th{"colspan" => "2"} Вход
+			%th{"colspan" => "2"} Выход
+			%th Тип прибора
+			%th Модель
+			%th Заводской №
+			%th{"colspan" => "2"} Вход
+			%th{"colspan" => "2"} Выход
+			%th Тип прибора
+			%th Модель
+			%th Заводской №
+			%th Вид МР
+			%th Дата предыдущей МР
+			%th Срок следующей МР
+		- number=0
+		- @devices.each do |device|
+			- number+=1
+			%tr
+				%td= number
+				%td= #device.auto_position.automation_area
+				%td= #device.auto_position.technological_unit
+				%td= #device.auto_position.title
+				%td= device.input_range
+				%td= device.input_measurement_units
+				%td= device.output_range
+				%td= device.output_measurement_units
+				%td= device.device_type
+				%td= device.model
+				%td= device.serial_number
+				%td= device.replacement.input_range
+				%td= device.replacement.input_measurement_units
+				%td= device.replacement.output_range
+				%td= device.replacement.output_measurement_units
+				%td= device.replacement.device_type
+				%td= device.replacement.model
+				%td= device.replacement.serial_number
+				%td= device.replacement.form_of_mr
+				%td= device.replacement.prev_mr_date
+				%td= device.replacement.next_mr_date
+				%td [ ] - чекбоксик
+				%td= link_to 'Удалить пару', delete_replacement_device_path(device)
+%p P.S. ?? - это поле возможно будет, а возможно и нет

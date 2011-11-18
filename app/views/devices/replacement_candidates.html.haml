@@ -1,46 +1,47 @@
 %h1 Список всех приборов
 Сейчас мы ищем замену для прибора:
-=@device.title
-%table
-	%tr
-		%th "Уникальный номер"??(не device.id)
-		%th "Наименование СИ"
-		%th "Тип СИ"
-		%th "Вид МР"
-		%th "Инвентарный номер"??
-		%th	"Заводской номер"
-		%th	"Статус"
-		%th "Подразделение МР"
-		%th "Местонахождение СИ, рабочая среда"
-		%th "Дата последней МР"
-		%th "Дата следующей МР"
-		%th "Участок автоматизации"
-		%th "Технологический агрегат"
-		%th "Параметр заменяемости"
-		%th "Взаимозаменяемость данного прибора"(здесь будут ссылки на подбор возможных замен)
-		%th ??
-		%th ??
-		%th 
-		
-	- @devices.each do |device|
+= @device.title
+.scroll
+	%table
 		%tr
-			%td= link_to device.title, device_path(device)
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td
-			%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
-			%td
-			%td= link_to 'Редактировать', edit_device_path(device)
-			%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
-			%td= link_to 'Подходит для замены', make_replacement_pair_device_path(device)
+			%th "Уникальный номер"??(не device.id)
+			%th "Наименование СИ"
+			%th "Тип СИ"
+			%th "Вид МР"
+			%th "Инвентарный номер"??
+			%th	"Заводской номер"
+			%th	"Статус"
+			%th "Подразделение МР"
+			%th "Местонахождение СИ, рабочая среда"
+			%th "Дата последней МР"
+			%th "Дата следующей МР"
+			%th "Участок автоматизации"
+			%th "Технологический агрегат"
+			%th "Параметр заменяемости"
+			%th "Взаимозаменяемость данного прибора"(здесь будут ссылки на подбор возможных замен)
+			%th ??
+			%th ??
+			%th 
+			
+		- @devices.each do |device|
+			%tr
+				%td= link_to device.title, device_path(device)
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td
+				%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
+				%td
+				%td= link_to 'Редактировать', edit_device_path(device)
+				%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
+				%td= link_to 'Подходит для замены', make_replacement_pair_device_path(device)
 %p Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
 %p P.S. ?? - это поле возможно будет, а возможно и нет
