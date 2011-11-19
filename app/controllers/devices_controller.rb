@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	def index
 		@page = params[:page]
-		@devices = Device.paginate(:page => params[:page], :per_page => 10).order('title')
+		@devices = Device.paginate(:page => params[:page], :per_page => 1).order('title')
 	end
 	
 	def replacements_list

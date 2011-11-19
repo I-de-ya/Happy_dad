@@ -45,6 +45,6 @@
 				%td= link_to 'Редактировать', edit_device_path(device)
 				%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
 %p Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
-= will_paginate @devices
+= will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
 = select_tag :page, options_for_select([1, 2, 3],@page.to_i)
 %p P.S. ?? - это поле возможно будет, а возможно и нет
