@@ -3,7 +3,11 @@ HappyDad::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-	resources :auto_positions
+	resources :auto_positions do
+		collection do
+			get 'import_from_csv'
+		end
+	end
 	
 	resources :locations
 	

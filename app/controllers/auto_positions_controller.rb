@@ -5,7 +5,7 @@ class AutoPositionsController < ApplicationController
   	@auto_positions = AutoPosition.all
   end
 
-=begin
+
   def import_from_csv
   	require 'csv'
   	CSV.open('/home/innerwhisper/Рабочий стол/Import1.csv', 'r').each do |row|
@@ -13,7 +13,7 @@ class AutoPositionsController < ApplicationController
   	end
   	redirect_to auto_positions_path
   end
-=end
+
   
   def new
   end
