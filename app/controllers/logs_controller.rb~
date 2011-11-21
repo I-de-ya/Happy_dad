@@ -1,0 +1,7 @@
+class LogsController < ApplicationController
+
+	def create
+		@log = Log.new(params[:status])
+	end
+
+end

@@ -1,0 +1,30 @@
+= form_for @device do |f|
+	%table	
+		%tr
+			%td= f.label :title, "Наименование СИ"
+			%td= f.text_field :title
+		%tr
+			%td= f.label :uniq_number_in_ASOMI, "Уникальный номер"
+			%td= f.text_field :uniq_number_in_ASOMI
+		%tr
+			%td= f.label :device_type, "Тип СИ"
+			%td= f.text_field :device_type
+		%tr
+			%td Тут местоположения (списком)
+			%td
+		%tr
+			%td А тут, в зависимости от местоположения, статусы (тоже списком)
+			%td
+		%tr
+			%td= f.label :replace_param, "Параметр взаимозаменяемости"
+			%td= f.text_field :replace_param
+		%tr
+			%td= f.label :status, "Статус"
+			%td= f.text_field :replace_param
+		%tr
+			%td Все остальные поля
+			%td	
+	
+	
+
+	= f.submit "Подтвердить"
