@@ -5,21 +5,21 @@
 .scroll
 	%table
 		%tr
-			%th "Уникальный номер в АСОМИ"??
-			%th "Наименование СИ"
-			%th "Тип СИ"
-			%th "Вид МР"
-			%th "Инвентарный номер"??
-			%th	"Заводской номер"
-			%th	"Статус"
-			%th "Подразделение МР"
-			%th "Местонахождение СИ, рабочая среда"
-			%th "Дата последней МР"
-			%th "Дата следующей МР"
-			%th "Участок автоматизации"
+			%th= sortable "uniq_number_in_ASOMI", "Уникальный номер в АСОМИ"
+			%th= sortable "title", "Наименование СИ"
+			%th= sortable "device_type", "Тип СИ"
+			%th= sortable "form_of_mr", "Вид МР"
+			%th= sortable "inventory_number",  "Инвентарный номер"
+			%th= sortable "serial_number", "Заводской номер"
+			%th= sortable "status_id", "Статус"
+			%th= sortable "mr_unit", "Подразделение МР"
+			%th= sortable "location_id", "Местонахождение СИ, рабочая среда"
+			%th= sortable "prev_mr_date", "Дата последней МР"
+			%th= sortable "next_mr_date", "Дата следующей МР"
+			%th= sortable "auto_position.automation_area", "Участок автоматизации"
 			%th "Технологический агрегат"
 			%th "Позиция"
-			%th "Параметр заменяемости"
+			%th= sortable "replace_param", "Параметр заменяемости"
 			%th "Взаимозаменяемость данного прибора"
 			%th ??
 			%th ??
