@@ -8,7 +8,4 @@ class Device < ActiveRecord::Base
 	def find_matching
 	  Device.where(:factor => device.factor).where( "id IS NOT ?", self.id)
   end
-
-	
-
 end

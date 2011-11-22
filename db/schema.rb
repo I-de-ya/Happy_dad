@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118224836) do
+ActiveRecord::Schema.define(:version => 20111122115508) do
 
   create_table "auto_positions", :force => true do |t|
     t.string   "title"
@@ -81,6 +81,13 @@ ActiveRecord::Schema.define(:version => 20111118224836) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "logs", :force => true do |t|
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "device_id"
   end
 
   create_table "replacement_pairs", :force => true do |t|

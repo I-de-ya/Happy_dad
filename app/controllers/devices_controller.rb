@@ -4,6 +4,7 @@ class DevicesController < ApplicationController
 	def index
 		@page = params[:page]
 		@devices = Device.paginate(:page => params[:page], :per_page => 5).order(sort_column + " " + sort_direction)
+		@logs = Log.all
 	end
 	
 	def replacements_list

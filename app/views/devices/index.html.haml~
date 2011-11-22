@@ -19,8 +19,8 @@
 			%th= sortable "auto_position.automation_area", "Участок автоматизации"
 			%th "Технологический агрегат"
 			%th "Позиция"
-			%th "Параметр заменяемости"
-			%th= sortable "replace_param", "Взаимозаменяемость данного прибора"
+			%th= sortable "replace_param", "Параметр заменяемости"
+			%th "Взаимозаменяемость данного прибора"
 			%th ??
 			%th ??
 
@@ -48,3 +48,6 @@
 = will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
 = select_tag :page, options_for_select([1, 2, 3],@page.to_i)
 %p P.S. ?? - это поле возможно будет, а возможно и нет
+- @logs.each do |log|
+	= log.device.title
+
