@@ -45,12 +45,23 @@ class DevicesController < ApplicationController
 	
 	def update
 		@device = Device.find(params[:id])
-			if @device.update_attributes(params[:device])
-				redirect_to @device
+		
+		
+		
+		session[:device_old_state] = @device
+		device_log = Device.find(session[:device_old_state])
+		
+		
+		
+		if @device.update_attributes(params[:device])
+			
+			redirect_to create_log_path
+				
 				# ^ Эквивалентно ли render "show"?
-			else
-				render "edit"
-			end
+		else
+				
+			render "edit"
+		end
 	end
 	
 	def show

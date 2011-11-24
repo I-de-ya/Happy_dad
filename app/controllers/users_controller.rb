@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 		if @user.save
 			sign_in @user
 			redirect_to @user
-			flash[:success] = "Добро пожаловать в ДЕКАНТЕР"
+			flash[:success] = "Добро пожаловать в приложение ХэппиДэд"
 		else
 			@title = "Sign up"
 			render 'new'
