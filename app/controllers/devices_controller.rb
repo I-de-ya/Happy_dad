@@ -3,8 +3,7 @@ class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	def index
 		@page = params[:page]
-		@devices = Device.paginate(:page => params[:page], :per_page => 5).order(sort_column + " " + sort_direction)
-		@logs = Log.all
+		@devices = Device.paginate(:page => params[:page], :per_page => 5, :conditions => ['title LIKE ?', "%#{params[:search]}%"]).order(sort_column + " " + sort_direction)
 	end
 	
 	def replacements_list
@@ -30,7 +29,7 @@ class DevicesController < ApplicationController
 	
 	def create
 		@device = Device.new(params[:device])
-			if @device.save
+			if @device.save 
 				redirect_to @device
 			else
 				render :action => "new"
@@ -45,18 +44,15 @@ class DevicesController < ApplicationController
 	
 	def update
 		@device = Device.find(params[:id])
-		
-		
-		
+		session[:changed_params] = nil
 		session[:device_old_state] = @device
 		device_log = Device.find(session[:device_old_state])
-		
-		
-		
+		if @device.changed?		
+			session[:changed_params] = @device.title_was
+		end
 		if @device.update_attributes(params[:device])
 			
-			redirect_to create_log_path
-				
+			redirect_to sozdat_log_path
 				# ^ Эквивалентно ли render "show"?
 		else
 				

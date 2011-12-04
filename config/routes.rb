@@ -12,7 +12,13 @@ HappyDad::Application.routes.draw do
 	resources :locations
 	
 	resources :statuses
-	
+
+	resources :logs do
+		member do
+			get 'sozdat'		
+		end
+	end
+
 	resources :devices do
 		member do
 			get 'replacement_candidates'

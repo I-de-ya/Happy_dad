@@ -1,6 +1,8 @@
 %h1.center Список всех приборов
 .search
-	Тут должно быть поиску: [поле [v]][запрос][поиск]
+	= form_tag devices_path, :method => 'get' do
+		= text_field_tag :search, params[:search]
+		= submit_tag "Search"
 %p= link_to 'Новый прибор', new_device_path
 .scroll
 	%table
@@ -48,6 +50,4 @@
 = will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
 = select_tag :page, options_for_select([1, 2, 3],@page.to_i)
 %p P.S. ?? - это поле возможно будет, а возможно и нет
-- @logs.each do |log|
-	= log.device.title
 

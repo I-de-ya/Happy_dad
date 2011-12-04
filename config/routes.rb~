@@ -1,11 +1,24 @@
 HappyDad::Application.routes.draw do
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+	resources :auto_positions do
+		collection do
+			get 'import_from_csv'
+		end
+	end
+	
 	resources :locations
 	
 	resources :statuses
-	
+
+	resources :logs do
+		member do
+			post 'sozdat'		
+		end
+	end
+
 	resources :devices do
 		member do
 			get 'replacement_candidates'
@@ -17,12 +30,7 @@ HappyDad::Application.routes.draw do
 		end
 	end
 	
-	resources :replacement_pairs do
-		member do
-			post 'create_replacement_pair'
-		end
-	end
-
+	resources :users
   resources :sessions, :only => [:new, :create, :destroy]
 
   match '/signup',  :to => 'users#new'

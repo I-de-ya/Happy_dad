@@ -1,6 +1,8 @@
 %h1.center Список всех приборов
 .search
-	Тут должно быть поиску: [поле [v]][запрос][поиск]
+	= form_tag devices_path, :method => 'get' do
+		= text_field_tag :search, params[:search]
+		= submit_tag "Search", :title => nil
 %p= link_to 'Новый прибор', new_device_path
 .scroll
 	%table
