@@ -1,7 +1,8 @@
 %h1.center Список всех приборов
 .search
 	= form_tag devices_path, :method => 'get' do
-		= text_field_tag :search, params[:search], :placeholder => 'Параметры поиска'
+		= select_tag "select", collection_for_select(@a), :prompt => "Выберите"
+		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
 %p= link_to 'Новый прибор', new_device_path
 .scroll
