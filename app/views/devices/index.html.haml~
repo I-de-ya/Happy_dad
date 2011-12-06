@@ -1,7 +1,7 @@
 %h1.center Список всех приборов
 .search
 	= form_tag devices_path, :method => 'get' do
-		= select_tag "select", collection_for_select(@a), :prompt => "Выберите"
+		= select_tag :device, options_for_select(@device, @device)
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
 %p= link_to 'Новый прибор', new_device_path
@@ -10,6 +10,7 @@
 		%tr
 			%th= sortable "uniq_number_in_ASOMI", "Уникальный номер в АСОМИ"
 			%th= sortable "title", "Наименование СИ"
+			%th= sortable "created_at", "Создан"
 			%th= sortable "device_type", "Тип СИ"
 			%th= sortable "form_of_mr", "Вид МР"
 			%th= sortable "inventory_number",  "Инвентарный номер"
@@ -31,6 +32,7 @@
 			%tr
 				%td= device.uniq_number_in_ASOMI
 				%td= link_to device.title, device_path(device)
+				%td= device.created_at.to_date
 				%td= device.device_type
 				%td= device.form_of_mr
 				%td= device.inventory_number
@@ -51,4 +53,3 @@
 = will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
 = select_tag :page, options_for_select([1, 2, 3],@page.to_i)
 %p P.S. ?? - это поле возможно будет, а возможно и нет
-
