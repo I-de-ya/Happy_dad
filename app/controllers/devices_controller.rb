@@ -3,8 +3,11 @@ class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	def index
 		@page = params[:page]
-		@device = Device.column_names
-		@devices = Device.paginate(:page => params[:page], :per_page => 5, :conditions => ['title LIKE ?', "%#{params[:search]}%"]).order(sort_column + " " + sort_direction)
+		@device = Device.attribute_names
+		@attr = params[:qwerty]
+		@search = params[:search]
+		@devices = Device.paginate(:page => params[:page], :per_page => 5).order(sort_column + " " + sort_direction)
+
 	end
 	
 	def replacements_list

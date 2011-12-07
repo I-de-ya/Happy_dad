@@ -29,26 +29,50 @@
 			%th ??
 
 		- @devices.each do |device|
-			%tr
-				%td= device.uniq_number_in_ASOMI
-				%td= link_to device.title, device_path(device)
-				%td= device.created_at.to_date
-				%td= device.device_type
-				%td= device.form_of_mr
-				%td= device.inventory_number
-				%td= device.serial_number
-				%td= #device.status.title
-				%td= device.mr_unit
-				%td= #device.location.title
-				%td= device.prev_mr_date
-				%td= device.next_mr_date
-				%td= device.auto_position ? device.auto_position.automation_area : "-"
-				%td= device.auto_position ? device.auto_position.technological_unit : "-"
-				%td= device.auto_position ? device.auto_position.title : "-"
-				%td= device.replace_param
-				%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
-				%td= link_to 'Редактировать', edit_device_path(device)
-				%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
+			-if @search == nil
+				%tr
+					%td= device.uniq_number_in_ASOMI
+					%td= link_to device.title, device_path(device)
+					%td= device.created_at.to_date
+					%td= device.device_type
+					%td= device.form_of_mr
+					%td= device.inventory_number
+					%td= device.serial_number
+					%td= #device.status.title
+					%td= device.mr_unit
+					%td= #device.location.title
+					%td= device.prev_mr_date
+					%td= device.next_mr_date
+					%td= device.auto_position ? device.auto_position.automation_area : "-"
+					%td= device.auto_position ? device.auto_position.technological_unit : "-"
+					%td= device.auto_position ? device.auto_position.title : "-"
+					%td= device.replace_param
+					%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
+					%td= link_to 'Редактировать', edit_device_path(device)
+					%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
+			- else
+				- if device.attributes[@attr].to_s == @search
+					%tr
+						%td= device.uniq_number_in_ASOMI
+						%td= link_to device.title, device_path(device)
+						%td= device.created_at.to_date
+						%td= device.device_type
+						%td= device.form_of_mr
+						%td= device.inventory_number
+						%td= device.serial_number
+						%td= #device.status.title
+						%td= device.mr_unit
+						%td= #device.location.title
+						%td= device.prev_mr_date
+						%td= device.next_mr_date
+						%td= device.auto_position ? device.auto_position.automation_area : "-"
+						%td= device.auto_position ? device.auto_position.technological_unit : "-"
+						%td= device.auto_position ? device.auto_position.title : "-"
+						%td= device.replace_param
+						%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
+						%td= link_to 'Редактировать', edit_device_path(device)
+						%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
+
 %p Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
 = will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
 = select_tag :page, options_for_select([1, 2, 3],@page.to_i)
