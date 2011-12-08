@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	def index
 		@page = params[:page]
-		@device = Device.attribute_names
+		@device = Device.attribute_names - ["id", "title"]
 		@attr = params[:qwerty]
 		@search = params[:search]
 		@devices = Device.paginate(:page => params[:page], :per_page => 5).order(sort_column + " " + sort_direction)
@@ -100,7 +100,7 @@ class DevicesController < ApplicationController
 
 	def log
 		@device = Device.find(params[:id])
-		redirect_to log_devices_path
+
 	end
 
 	private
