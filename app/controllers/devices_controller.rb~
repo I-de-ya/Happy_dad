@@ -59,6 +59,7 @@ class DevicesController < ApplicationController
 				redirect_to :controller=>'logs', :action => 'sozdat'
 			else
 				render :action => "edit"
+			end
 		else
 			redirect_to root_path
 		end
@@ -96,7 +97,12 @@ class DevicesController < ApplicationController
 		session[:current_device_id] = nil
 		redirect_to replacements_list_devices_path
 	end
-	
+
+	def log
+		@device = Device.find(params[:id])
+		redirect_to log_devices_path
+	end
+
 	private
 	
 	def sort_column

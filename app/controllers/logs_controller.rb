@@ -18,6 +18,6 @@ class LogsController < ApplicationController
 		@log.new_value = session[:new_value]
 		@log.save
 		redirect_to logs_path
-
 	end
+
 end

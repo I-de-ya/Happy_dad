@@ -6,15 +6,15 @@
 			%b= log.device.title
 			значение атрибута
 			%b= log.attr
-			- if log.old_value.nil?
+			- if log.old_value == nil
+				было установлено равным					
+				%b= log.new_value
+			- else
 				было изменено с 		
 				%b= log.old_value
 				на
-			- else
-				было установлено равным					
-				%b= log.new_value
 		= log.created_at.to_s(:db)
-		%line
+		%hr
 	
 	
 

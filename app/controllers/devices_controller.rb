@@ -97,7 +97,12 @@ class DevicesController < ApplicationController
 		session[:current_device_id] = nil
 		redirect_to replacements_list_devices_path
 	end
-	
+
+	def log
+		@device = Device.find(params[:id])
+
+	end
+
 	private
 	
 	def sort_column

@@ -24,6 +24,7 @@ HappyDad::Application.routes.draw do
 			get 'replacement_candidates'
 			get 'make_replacement_pair'
 			get 'delete_replacement'
+			get 'log'
 		end
 		collection do
 			get 'replacements_list'

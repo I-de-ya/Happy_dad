@@ -4,8 +4,9 @@ class LogsController < ApplicationController
 	def index
 		@logs = Log.all
 		session[:changed_device] = nil
-		session[:changed_params] = nil
+		session[:old_value] = nil
 		session[:changed_attr] = nil
+		session[:new_value] = nil
 	end
 
 	
