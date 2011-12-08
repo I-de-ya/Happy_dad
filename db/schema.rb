@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111122115508) do
+ActiveRecord::Schema.define(:version => 20111208162906) do
 
   create_table "auto_positions", :force => true do |t|
     t.string   "title"
@@ -88,6 +88,9 @@ ActiveRecord::Schema.define(:version => 20111122115508) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "device_id"
+    t.string   "old_value"
+    t.string   "new_value"
+    t.string   "attr"
   end
 
   create_table "replacement_pairs", :force => true do |t|

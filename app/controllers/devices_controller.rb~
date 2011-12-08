@@ -4,10 +4,9 @@ class DevicesController < ApplicationController
 	def index
 		@page = params[:page]
 		@device = Device.attribute_names
-		@attr = params[:qwerty].intern
+		@attr = params[:qwerty]
 		@search = params[:search]
 		@devices = Device.paginate(:page => params[:page], :per_page => 5).order(sort_column + " " + sort_direction)
-
 	end
 	
 	def replacements_list
@@ -48,20 +47,23 @@ class DevicesController < ApplicationController
 	
 	def update
 		@device = Device.find(params[:id])
-		session[:changed_params] = nil
-		session[:device_old_state] = @device
-#		device_log = Device.find(session[:device_old_state])
-#		if @device.changed?		
-#			session[:changed_params] = @device.title_was
-#		end
-		if @device.update_attributes(params[:device])
-			
-			redirect_to devices_path
-				# ^ Эквивалентно ли render "show"?
+		@device.attributes = params[:device]
+		
+		session[:changed_device] = @device.id
+		if @device.changed?
+				session[:changed_attr] = @device.changed.first
+				session[:old_value] = @device.changes[@device.changed.first]
+				session[:new_value] = @device.changes.second
 		else
-				
-			render "edit"
+				session[:changed_attr] = "Not changed at all"
 		end
+
+		if @device.save
+			redirect_to :controller=>'logs', :action => 'sozdat'
+		else
+			render :action => "edit"
+		end
+
 	end
 	
 	def show

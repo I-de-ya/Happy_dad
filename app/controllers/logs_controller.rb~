@@ -3,17 +3,20 @@ class LogsController < ApplicationController
 	
 	def index
 		@logs = Log.all
-		@logg = session[:changed_params].title_was
-	
+		session[:changed_device] = nil
+		session[:changed_params] = nil
+		session[:changed_attr] = nil
 	end
+
 	
 	def sozdat
 		@log = Log.new
-		@log.device_id = session[:device_old_state].id
-		device_new_state = Device.find(session[:device_old_state].id)
-		device_old_state = session[:device_old_state]
+		@log.device_id = session[:changed_device]
+		@log.attr = session[:changed_attr]
+		@log.old_value = session[:old_value]
+		@log.new_value = session[:new_value]
 		@log.save
-		session[:device_old_state] = nil
 		redirect_to logs_path
+
 	end
 end

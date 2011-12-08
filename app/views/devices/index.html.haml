@@ -51,7 +51,7 @@
 					%td= link_to 'Редактировать', edit_device_path(device)
 					%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
 			- else
-				- if device.attributes[@attr].to_s == @search
+				- if device.attributes[@attr].to_s.underscore == @search.underscore
 					%tr
 						%td= device.uniq_number_in_ASOMI
 						%td= link_to device.title, device_path(device)

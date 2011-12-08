@@ -1,4 +1,18 @@
-- @logs.each do |log|
-	%br= log.device.id
-= @logg
+# coding: utf-8
+%ul
+	- @logs.each do |log|
+		%li
+			У прибора
+			%b= log.device.title
+			значение атрибута
+			%b= log.attr
+			- if log.old_value.nil?
+				было изменено с 		
+				%b= log.old_value
+				на
+			- else
+				было установлено равным					
+			%b= log.new_value
+	
+	
 

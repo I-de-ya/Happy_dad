@@ -10,6 +10,12 @@ class Device < ActiveRecord::Base
 	  Device.where(:factor => device.factor).where( "id IS NOT ?", self.id)
   end
 
-	
+	def self.search(search)
+		if search		
+			find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+		else
+			find(:all)
+		end
+	end
 
 end
