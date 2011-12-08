@@ -54,14 +54,14 @@ class DevicesController < ApplicationController
 				session[:changed_attr] = @device.changed.first
 				session[:old_value] = @device.changes[@device.changed.first].first
 				session[:new_value] = @device.changes[@device.changed.first].second
-		else
-				session[:changed_attr] = "Not changed at all"
-		end
 
-		if @device.save
-			redirect_to :controller=>'logs', :action => 'sozdat'
+			if @device.save
+				redirect_to :controller=>'logs', :action => 'sozdat'
+			else
+				render :action => "edit"
+			end
 		else
-			render :action => "edit"
+			redirect_to root_path
 		end
 
 	end

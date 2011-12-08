@@ -12,7 +12,9 @@
 				на
 			- else
 				было установлено равным					
-			%b= log.new_value
+				%b= log.new_value
+		= log.created_at.to_s(:db)
+		%hr
 	
 	
 

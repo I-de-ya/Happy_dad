@@ -3,16 +3,18 @@
 	- @logs.each do |log|
 		%li
 			У прибора
-			%b log.device.title
+			%b= log.device.title
 			значение атрибута
-			%b log.attr
+			%b= log.attr
 			- if log.old_value.nil?
 				было изменено с 		
 				%b= log.old_value
 				на
 			- else
 				было установлено равным					
-			=b log.new_value
+				%b= log.new_value
+		= log.created_at.to_s(:db)
+		%line
 	
 	
 
