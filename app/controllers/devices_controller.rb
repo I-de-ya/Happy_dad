@@ -100,7 +100,6 @@ class DevicesController < ApplicationController
 
 	def log
 		@device = Device.find(params[:id])
-
 	end
 
 	private
