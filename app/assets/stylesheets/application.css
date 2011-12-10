@@ -37,13 +37,13 @@ a:hover{
 
 .menu li{
 	display:inline-block;
-	width:210px;
+	width:190px;
 	padding:10px;
 }
 
 .menu a{
 	color:white;
-	font-size:16pt;
+	font-size:14pt;
 }
 .menu a:hover{
 	text-decoration: none;
