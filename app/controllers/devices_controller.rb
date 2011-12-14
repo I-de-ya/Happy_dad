@@ -6,7 +6,7 @@ class DevicesController < ApplicationController
 		@device = Device.attribute_names - ["id", "created_at","updated_at"]
 		@attr = params[:qwerty]
 		@search = params[:search]
-		@devices = Device.paginate(:page => params[:page], :per_page => 5).order(sort_column + " " + sort_direction)
+		@devices = Device.paginate(:page => params[:page], :per_page => 10).order(sort_column + " " + sort_direction)
 	end
 	
 	def replacements_list

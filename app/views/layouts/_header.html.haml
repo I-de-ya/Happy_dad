@@ -1,4 +1,9 @@
 %header
+	= link_to "Местоположения", locations_path
+	|
+	= link_to "Статусы", statuses_path
+	|
+	= link_to "Позиции автоматизации", auto_positions_path
 	.account
 		- if signed_in?
 			= @current_user.name
@@ -11,7 +16,4 @@
 			%ul
 				%li= link_to "Приборы", devices_path
 				%li= link_to "Замены", replacements_list_devices_path
-				%li= link_to "Позиции автоматизации", auto_positions_path
 				%li= link_to "Логи СИ", logs_path
-				%li= link_to "Местоположения", locations_path
-				%li= link_to "Статусы", statuses_path

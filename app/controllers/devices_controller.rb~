@@ -3,10 +3,10 @@ class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	def index
 		@page = params[:page]
-		@device = Device.attribute_names - ["id", "title"]
+		@device = Device.attribute_names - ["id", "created_at","updated_at"]
 		@attr = params[:qwerty]
 		@search = params[:search]
-		@devices = Device.paginate(:page => params[:page], :per_page => 5).order(sort_column + " " + sort_direction)
+		@devices = Device.paginate(:page => params[:page], :per_page => 7).order(sort_column + " " + sort_direction)
 	end
 	
 	def replacements_list
@@ -100,7 +100,6 @@ class DevicesController < ApplicationController
 
 	def log
 		@device = Device.find(params[:id])
-
 	end
 
 	private

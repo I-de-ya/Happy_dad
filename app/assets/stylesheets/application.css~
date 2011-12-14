@@ -6,6 +6,13 @@
  *= require_tree . 
 */
 
+body{
+	margin:15px;
+}
+
+header{
+	height:90px;
+}
 
 footer{
 	text-align:center;
@@ -22,28 +29,42 @@ a	{
 a:hover{
 	text-decoration: underline;
 }
+h1.paragraph {
+	margin-left:5px;
+	margin-right:0;
+	margin-top:0;	
+	margin-bottom:10px;		
+}
 .center{
 	text-align:center;
 }
+.right{
+	text-align:right;
+}
+
 .account{
 	float:right;
+	margin:0;
+	padding:0;
 }
 
 .menu{
 	white-space: nowrap;
 	text-align:center;
 	background-color:#393939;
+	margin:0;
+	padding:0;
 }
 
 .menu li{
 	display:inline-block;
-	width:180px;
+	width:2300px;
 	padding:10px;
 }
 
 .menu a{
 	color:white;
-	font-size:14pt;
+	font-size:16pt;
 }
 .menu a:hover{
 	text-decoration: none;
@@ -62,10 +83,12 @@ a:hover{
 
 .container{
 	margin:0;
+	padding:0;
 }
 
 .search{
 	float:right;
+	margin-top:10px;
 }
 
 table{

@@ -1,12 +1,11 @@
 # coding: utf-8
-%h1.center Список всех приборов
-= @search.upcase
+
 .search
 	= form_tag devices_path, :method => 'get' do
 		= select_tag :qwerty, options_for_select(@device, @device)
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
-%p= link_to 'Новый прибор', new_device_path
+%h1.parargraph Список всех приборов
 .scroll
 	%table
 		%tr
@@ -74,8 +73,9 @@
 						%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
 						%td= link_to 'Редактировать', edit_device_path(device)
 						%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
-
-%p Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
+.right
+	= link_to 'Новый прибор', new_device_path
+Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
 = will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
 = select_tag :page, options_for_select([1, 2, 3],@page.to_i)
 %p P.S. ?? - это поле возможно будет, а возможно и нет
