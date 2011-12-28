@@ -5,7 +5,7 @@
 		= select_tag :qwerty, options_for_select(@device, @device)
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
-%h1.parargraph Список всех приборов
+%h1.paragraph Список всех приборов
 .scroll
 	%table
 		%tr
@@ -32,7 +32,10 @@
 		- @devices.each do |device|
 			-if @search == nil
 				%tr
-					%td= device.uniq_number_in_ASOMI
+					%td
+						= device.uniq_number_in_ASOMI
+						%br
+						= (DateTime.now.to_date-device.created_at.to_date).to_i
 					%td= link_to device.title, device_path(device)
 					%td= device.created_at.to_date
 					%td= device.device_type

@@ -110,5 +110,19 @@ td{
 	background-color: white;
 }
 
+.red {
+	background-color: red;
+	color:red;
+}
+
+.yellow {
+	background-color: yellow;
+	color: yellow;
+}
+
+.green {
+	background-color: green;
+	color: green;
+}
 
 

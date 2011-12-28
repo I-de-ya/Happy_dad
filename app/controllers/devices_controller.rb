@@ -105,7 +105,7 @@ class DevicesController < ApplicationController
 	private
 	
 	def sort_column
-		Device.column_names.include?(params[:sort]) ? params[:sort] : "title"
+		Device.column_names.include?(params[:sort]) ? params[:sort] : "next_mr_date"
 	end
 
 	def sort_direction

@@ -58,7 +58,7 @@ h1.paragraph {
 
 .menu li{
 	display:inline-block;
-	width:2300px;
+	width:230px;
 	padding:10px;
 }
 
@@ -110,5 +110,19 @@ td{
 	background-color: white;
 }
 
+.red {
+	background-color: red;
+	color:red;
+}
+
+.yellow {
+	background-color: yellow;
+	color: yellow;
+}
+
+.black {
+	background-color: green;
+	color: green;
+}
 
 
