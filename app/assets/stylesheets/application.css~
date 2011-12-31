@@ -120,7 +120,7 @@ td{
 	color: yellow;
 }
 
-.black {
+.green {
 	background-color: green;
 	color: green;
 }
