@@ -8,123 +8,89 @@
 		%li История смены статусов
 		%li История изменения атрибутов
 %h1 Карточка СИ
-%p
-	%b Наименование СИ:
-	%br= @device.title
-%p
-	%b Местонахождение СИ:
-	%br= @device.location
-%p
-	%b Статус СИ:
-	%br= @device.status
-%p
-	%b Уникальный номер по АСОМИ:
-	%br= @device.uniq_number_in_ASOMI
-%p
-	%b Тип СИ:
-	%br= @device.device_type
-%p
-	%b Модель СИ:
-	%br= @device.model
-%p
-	%b Вид МР (метрологической работы):
-	%br= @device.form_of_mr
-%p
-	%b Заводской номер:
-	%br= @device.serial_number
-%p
-	%b Подразделение МР:
-	%br= @device.mr_unit
-%p
-	%b Дата последней МР:
-	%br= @device.prev_mr_date
-%p
-	%b Дата следующей МР:
-	%br= @device.next_mr_date
-%p
-	%b Участок автоматизации:
-	%br= #@device.auto_position.automation_area
-%p
-	%b Технологический агрегат:
-	%br= #@device.auto_position.technological_unit
-%p
-	%b Обозначение позиции:
-	%br= #@device.auto_position.title
-%p
-	%b Параметр взаимозаменяемости:
-	%br= @device.replace_param
-%p
-	%b Год производства:
-	%br= #@device.year_of_production
-%p
-	%b Год начала эксплуатации:
-	%br= #@device.beginning_operation_year
-%p
-	%b Диапазон входа:
-	%br= #@device.input_range
-%p
-	%b Единицы измерения на входе:
-	%br= #@device.input_measurement_units
-%p
-	%b Диапазон перестройки(входа):
-	%br= #@device.changeover_input_range
-%p
-	%b Диапазон перестройки(единицы измерения):
-	%br= #@device.changeover_input_measurement_units
-%p
-	%b Диапазон выхода:
-	%br= #@device.output_range
-%p
-	%b Единицы измерения на выходе:
-	%br= #@device.output_measurement_units
-%p
-	%b Паспорт:
-	%br= #@device.passport
-%p
-	%b Место хранения оригинала паспорта:
-	%br= #@device.passport_store_place
-%p
-	%b Наличие и адрес электронной версии паспорта:
-	%br= #@device.passport_electronic_version
-%p	
-	%b Техническое описание:
-	%br= #@device.tech_description
-%p
-	%b Место хранения технического описания:
-	%br= #@device.tech_description_store_place
-%p
-	%b Наличие и адрес электронной версии технического описания:
-	%br= #@device.tech_description_electronic_version
-%p	
-	%b Инструкция по эксплуатации:
-	%br= #@device.user_manual
-%p
-	%b Место хранения инструкции по эксплуатации:
-	%br= #@device.user_manual_store_place
-%p
-	%b Наличие и адрес электронной версии инструкции по эксплуатации:
-	%br= #@device.user_manual_electronic_version
-%p
-	%b Содержание золота:
-	%br= #@device.gold
-%p
-	%b Содержание серебра:
-	%br= #@device.silver
-%p
-	%b Содержание платины:
-	%br= #@device.platinum
-%p
-	%b Содержание металлов ПГ:
-	%br= #@device.PG_metals
-%p
-	%b Номер подотчета:
-	%br= #@device.subreport_number
-%p
-	%b № ЕНС:
-	%br= #@device.ENS_number
-%p
-	%b Инвентарный номер:
-	%br= #@device.inventory_number
+.scroll
+	%table
+		%tr
+			%th Наименование СИ:
+			%th Местонахождение СИ:
+			%th Статус СИ:
+			%th Уникальный номер по АСОМИ:
+			%th Тип СИ:
+			%th Модель СИ:
+			%th Вид МР (метрологической работы):
+			%th Заводской номер:
+			%th Подразделение МР:
+			%th Дата последней МР:
+			%th Дата следующей МР:
+			%th Участок автоматизации:
+			%th Технологический агрегат:
+			%th Обозначение позиции:
+			%th Параметр взаимозаменяемости:
+			%th Год производства:
+			%th Год начала эксплуатации:
+			%th Диапазон входа:
+			%th Единицы измерения на входе:
+			%th Диапазон перестройки(входа):
+			%th Диапазон перестройки(единицы измерения):
+			%th Диапазон выхода:
+			%th Единицы измерения на выходе:
+			%th Паспорт:
+			%th Место хранения оригинала паспорта:
+			%th Наличие и адрес электронной версии паспорта:
+			%th Техническое описание:
+			%th Место хранения технического описания:
+			%th Наличие и адрес электронной версии технического описания:
+			%th Инструкция по эксплуатации:
+			%th Место хранения инструкции по эксплуатации:
+			%th Наличие и адрес электронной версии инструкции по эксплуатации:
+			%th Содержание золота:
+			%th Содержание серебра:
+			%th Содержание платины:
+			%th Содержание металлов ПГ:
+			%th Номер подотчета:
+			%th № ЕНС:
+			%th Инвентарный номер:
+		%tr
+			%td= @device.title
+			%td= @device.location
+			%td= @device.status
+			%td= @device.uniq_number_in_ASOMI
+			%td= @device.device_type
+			%td= @device.model
+			%td= @device.form_of_mr
+			%td= @device.serial_number
+			%td= @device.mr_unit
+			%td= @device.prev_mr_date
+			%td= @device.next_mr_date
+			%td= #@device.auto_position.automation_area
+			%td= #@device.auto_position.technological_unit
+			%td= #@device.auto_position.title
+			%td= @device.replace_param
+			%td= #@device.year_of_production
+			%td= #@device.beginning_operation_year
+			%td= #@device.input_range
+			%td= #@device.input_measurement_units
+			%td= #@device.changeover_input_range
+			%td= #@device.changeover_input_measurement_units
+			%td= #@device.output_range
+			%td= #@device.output_measurement_units
+			%td= #@device.passport
+			%td= #@device.passport_store_place
+			%td= #@device.passport_electronic_version
+			%td= #@device.tech_description
+			%td= #@device.tech_description_store_place
+			%td= #@device.tech_description_electronic_version
+			%td= #@device.user_manual
+			%td= #@device.user_manual_store_place
+			%td= #@device.user_manual_electronic_version
+			%td= #@device.gold
+			%td= #@device.silver
+			%td= #@device.platinum
+			%td= #@device.PG_metals
+			%td= #@device.subreport_number
+			%td= #@device.ENS_number
+			%td= #@device.inventory_number
+
 %p
 = link_to 'Редактировать', edit_device_path(@device)
 = link_to 'Назад к приборам', devices_path

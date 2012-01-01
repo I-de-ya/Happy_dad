@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209165035) do
+ActiveRecord::Schema.define(:version => 20120101152955) do
 
   create_table "auto_positions", :force => true do |t|
     t.string   "title"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20111209165035) do
     t.date     "next_mr_date"
     t.date     "prev_mr_date"
     t.integer  "replace_param"
-    t.boolean  "form_of_mr"
     t.integer  "replacement_id"
     t.boolean  "has_replacement"
     t.string   "input_range"
@@ -68,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20111209165035) do
     t.float    "PG_metals"
     t.string   "subreport_number"
     t.string   "ENS_number"
+    t.string   "comment"
+    t.string   "form_of_mr"
   end
 
   create_table "location_statuses", :force => true do |t|

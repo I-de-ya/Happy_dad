@@ -6,6 +6,7 @@
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
 %h1.paragraph Список всех приборов
+= link_to "Импортировать базу по приборам из файла", import_from_csv_devices_path
 .scroll
 	%table
 		%tr
