@@ -6,6 +6,7 @@ HappyDad::Application.routes.draw do
 	resources :auto_positions do
 		collection do
 			get 'import_from_csv'
+      get 'import'
 		end
 	end
 	
