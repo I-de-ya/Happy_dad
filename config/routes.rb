@@ -29,6 +29,7 @@ HappyDad::Application.routes.draw do
 		collection do
 			get 'replacements_list'
 			get 'import_from_csv'
+      get 'import'
 		end
 	end
 	

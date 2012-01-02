@@ -101,14 +101,17 @@ class DevicesController < ApplicationController
 	def log
 		@device = Device.find(params[:id])
 	end
+	
+	def import
+	end
 	  
 	def import_from_csv
-  	require 'csv'
-  	CSV.open('/home/innerwhisper/Рабочий стол/Import_devices.csv', 'r').each do |row|
-  		Device.create(:device_type => row[1], :title => row[3], :serial_number => row[4], :form_of_mr => row[5], :prev_mr_date => row[6], :next_mr_date => row[7], :comment => row[8], :uniq_number_in_ASOMI => row[9])
+  		require 'csv'
+  		CSV.open('/home/innerwhisper/Рабочий стол/Import_devices.csv', 'r').each do |row|
+  			Device.create(:device_type => row[1], :title => row[3], :serial_number => row[4], :form_of_mr => row[5], :prev_mr_date => row[6], :next_mr_date => row[7], :comment => row[8], :uniq_number_in_ASOMI => row[9])
+  		end
+  		redirect_to devices_path
   	end
-  	redirect_to devices_path
-  end
 
 
 	private
