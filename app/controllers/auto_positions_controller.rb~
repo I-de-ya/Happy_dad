@@ -7,7 +7,7 @@ class AutoPositionsController < ApplicationController
 
   def import_from_csv
   	require 'csv'
-  	CSV.foreach('/home/slavcha/Dropbox/New folder/Happy dad (старый)/документация/Заполнение БД/Import_positions.csv', col_sep: ",", encoding:"UTF-8") do |row|
+  	CSV.foreach('/home/slavcha/Dropbox/New folder/Happy dad (старый)/документация/Заполнение БД/Import_positions.csv', col_sep: ";", encoding:"UTF-8") do |row|
   		AutoPosition.create(:automation_area => row[0], :technological_unit => row[1], :project_specification => row[2], :title => row[3], :function => row[4], :parameter_name => row[5], :parameter_range => row[6], :parameter_measurement_units => row[7], :device_id => row[11])
   	end
   	redirect_to auto_positions_path

@@ -14,7 +14,7 @@ class DevicesController < ApplicationController
 	
 		respond_to do |format|
 			format.html
-			format.xls { send_data @devices.to_xls(:columns => [:title, {:replacement => [:title]}], :headers => ["С позиции", "На позицию"]), :filename => 'Замены приборов.xls'}
+			format.xls { send_data @devices.to_xls(:columns => [{:auto_position => [:automation_area,:technological_unit,:title]},:input_range,:input_measurement_units,:output_range,:output_measurement_units,:device_type,:model,:serial_number, {:replacement => [:input_range,:input_measurement_units,:output_range,:output_measurement_units,:device_type,:model,:serial_number,:form_of_mr,:prev_mr_date,:next_mr_date]}], :headers => ["С позиции", "На позицию"]), :filename => 'Замены приборов.xls'}
 		end
 	end
 	
@@ -101,15 +101,27 @@ class DevicesController < ApplicationController
 	def log
 		@device = Device.find(params[:id])
 	end
+	
+	def import
+	end
+	  
+	def import_from_csv
+  		require 'csv'
+  		CSV.open('/home/slavcha/Dropbox/New folder/Happy dad (старый)/документация/Заполнение БД/Import_devices.csv', 'r').each do |row|
+  			Device.create(:device_type => row[1], :title => row[3], :serial_number => row[4], :form_of_mr => row[5], :prev_mr_date => row[6], :next_mr_date => row[7], :comment => row[8], :uniq_number_in_ASOMI => row[9])
+  		end
+  		redirect_to devices_path
+  	end
+
 
 	private
 	
 	def sort_column
-		Device.column_names.include?(params[:sort]) ? params[:sort] : "title"
+		Device.column_names.include?(params[:sort]) ? params[:sort] : "next_mr_date"
 	end
 
 	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
 	end
 	
 end
