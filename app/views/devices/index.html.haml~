@@ -32,7 +32,7 @@
 
 		- @devices.each do |device|
 			-if @search == nil
-				 - if device.next_mr_date != nil
+				- if device.next_mr_date != nil
 					-if (device.next_mr_date.to_date-DateTime.now.to_date).to_i > 10
 						%tr.red
 							%td= device.uniq_number_in_ASOMI
