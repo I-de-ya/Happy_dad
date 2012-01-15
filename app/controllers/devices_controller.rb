@@ -6,6 +6,7 @@ class DevicesController < ApplicationController
 		@device = Device.attribute_names - ["id", "created_at","updated_at"]
 		@attr = params[:qwerty]
 		@search = params[:search]
+		@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/
 		if @search == nil
 			@devices = Device.paginate(:page => params[:page], :per_page => 10).order(sort_column + " " + sort_direction)
 		else
