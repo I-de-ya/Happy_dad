@@ -8,11 +8,25 @@ class DevicesController < ApplicationController
 		@search = params[:search]
 		@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i
 		if @search == nil
+			@devices = Device.where('next_mr_date NOT ?', nil).paginate(:page => params[:page], :per_page => 10).order(sort_column + " " + sort_direction)
+		else
+			@devices = Device.order(sort_column + " " + sort_direction)
+		end
+	end
+
+	def alldevices
+		@page = params[:page]
+		@device = Device.attribute_names - ["id", "created_at","updated_at"]
+		@attr = params[:qwerty]
+		@search = params[:search]
+		@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i
+		if @search == nil
 			@devices = Device.paginate(:page => params[:page], :per_page => 10).order(sort_column + " " + sort_direction)
 		else
 			@devices = Device.order(sort_column + " " + sort_direction)
 		end
 	end
+		
 	
 	def replacements_list
 		@devices = Device.where(:has_replacement=>true)

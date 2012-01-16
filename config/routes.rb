@@ -26,8 +26,10 @@ HappyDad::Application.routes.draw do
 			get 'make_replacement_pair'
 			get 'delete_replacement'
 			get 'log'
+
 		end
 		collection do
+      get 'alldevices'
 			get 'replacements_list'
 			get 'import_from_csv'
       get 'import'

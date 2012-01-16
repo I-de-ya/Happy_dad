@@ -121,5 +121,16 @@ td{
 .green {
 	color: green;
 }
+.red a{
+	color:red;
+}
+
+.yellow a{
+	color: yellow;
+}
+
+.green a{
+	color: green;
+}
 
 

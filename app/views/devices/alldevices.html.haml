@@ -1,14 +1,12 @@
-# coding: utf-8
-
 .search
 	= form_tag devices_path, :method => 'get' do
 		= select_tag :qwerty, options_for_select(@device, @device)
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
-%h1.paragraph Список рабочих приборов
+%h1.paragraph Список всех приборов
 = link_to "Импортировать базу по приборам из файла", import_devices_path
 %br
-= link_to "Список всех приборов", alldevices_devices_path
+= link_to "Список всех приборов", devices_path
 .scroll
 	%table
 		%tr
@@ -36,21 +34,7 @@
 			-if @search == nil
 				%tr
 					%td= device.uniq_number_in_ASOMI
-					- if device.next_mr_date == nil
-						%td= link_to device.title, device_path(device)
-					- else
-						- if (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 30
-							%td.red
-								= link_to device.title, device_path(device)
-
-						- elsif (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 60
-							%td.yellow
-								= link_to device.title, device_path(device)
-
-						-else
-							%td.green
-								= link_to device.title, device_path(device)
-
+					%td= link_to device.title, device_path(device)
 					%td= device.created_at.to_date
 					%td= device.device_type
 					%td= device.form_of_mr
