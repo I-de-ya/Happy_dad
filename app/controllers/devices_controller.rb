@@ -3,7 +3,11 @@ class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	def index
 		@page = params[:page]
-		@device = Device.attribute_names - ["id", "created_at","updated_at"]
+		@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement"]
+		@names = ["Название", "Статус", "Местоположение", "Тип СИ", "Инвентарный номер", "Серийный номер", "mr_unit", "next_mr_date", "prev_mr_date", "replace_param", "Место автоматизации", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "Уникальный номер в АСОМИ", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "Золото", "Серебро", "Платина", "PG_metals", "subreport_number", "ENS_number", "Комментарии", "form_of_mr"]
+		attributes = [ @names,@device ]
+		@attributes = Hash[*attributes.transpose.flatten]
+
 		@attr = params[:qwerty]
 		@search = params[:search]
 		@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i

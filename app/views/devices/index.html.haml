@@ -2,7 +2,7 @@
 
 .search
 	= form_tag devices_path, :method => 'get' do
-		= select_tag :qwerty, options_for_select(@device, @device)
+		= select_tag :qwerty, options_for_select(@attributes,@attr)
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
 %h1.paragraph Список рабочих приборов
