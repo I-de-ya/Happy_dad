@@ -3,21 +3,21 @@ class LogsController < ApplicationController
 	
 	def index
 		@logs = Log.all
-		session[:changed_device] = nil
-		session[:old_value] = nil
-		session[:changed_attr] = nil
-		session[:new_value] = nil
 	end
 
 	
 	def sozdat
+		session[:changes].keys.each do |changed_params|
 		@log = Log.new
 		@log.device_id = session[:changed_device]
-		@log.attr = session[:changed_attr]
-		@log.old_value = session[:old_value]
-		@log.new_value = session[:new_value]
+		@log.attr = changed_params
+		@log.old_value = session[:changes][changed_params].first
+		@log.new_value = session[:changes][changed_params].last
 		@log.save
+		end
 		redirect_to logs_path
+		session[:changed_device] = nil
+		session[:changes] = nil
 	end
 
 end

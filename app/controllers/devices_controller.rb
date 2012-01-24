@@ -74,9 +74,7 @@ class DevicesController < ApplicationController
 		
 		session[:changed_device] = @device.id
 		if @device.changed?
-				session[:changed_attr] = @device.changed.first
-				session[:old_value] = @device.changes[@device.changed.first].first
-				session[:new_value] = @device.changes[@device.changed.first].second
+				session[:changes] = @device.changes
 
 			if @device.save
 				redirect_to :controller=>'logs', :action => 'sozdat'
