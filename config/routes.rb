@@ -5,7 +5,7 @@ HappyDad::Application.routes.draw do
 
 	resources :auto_positions do
 		collection do
-			get 'import_from_csv'
+			post 'import_from_csv'
       get 'import'
 		end
 	end
@@ -31,7 +31,7 @@ HappyDad::Application.routes.draw do
 		collection do
       get 'alldevices'
 			get 'replacements_list'
-			get 'import_from_csv'
+			post 'import_from_csv'
       get 'import'
 		end
 	end

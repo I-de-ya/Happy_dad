@@ -1,4 +1,4 @@
-= form_tag do
-	= file_field_tag 'file'
-Путь для импортируемого файла должен выбираться выше, пока вбивается в controller
-%p= link_to "Таки, импортировать базу", import_from_csv_auto_positions_path
+= form_for :dump, :url => {:controller => "auto_positions", :action => "import_from_csv"} do |f|
+	Выберите путь к файлу для импорта
+	= f.file_field :file
+	%p= submit_tag 'Импортировать базу'
