@@ -127,25 +127,29 @@ class DevicesController < ApplicationController
 	end
 	  
 	def import_from_csv
-  		require 'csv'
-  		@parsed_file = CSV.parse(params[:dump][:file])
-  		n = 0
-  		
-  		@parsed_file.each do |row|
-  			device = Device.new
-  			device.device_type = row[1]
-  			device.title = row[3]
-  			device.serial_number = row[4]
-  			device.form_of_mr = row[5]
-  			device.prev_mr_date = row[6]
-  			device.next_mr_date = row[7]
-  			device.comment = row[8]
-  			device.uniq_number_in_ASOMI = row[9]
-
-  			n += 1 if device.save
-  		end
-  		flash.now[:message] = "База была успешно импортирована, #{n} новых записей добавлено в базу"
-  		redirect_to devices_path
+		require 'csv'
+		if request.post? && params[:dump][:file].present?
+			infile = params[:dump][:file].read().force_encoding("UTF-8")
+			n = 0
+			
+			CSV.parse(infile) do |row|
+				n += 1
+				next if row.join.blank?
+				device = Device.new
+				device.device_type = row[1]
+  				device.title = row[3]
+  				device.serial_number = row[4]
+  				device.form_of_mr = row[5]
+  				device.prev_mr_date = row[6]
+  				device.next_mr_date = row[7]
+  				device.comment = row[8]
+  				device.uniq_number_in_ASOMI = row[9]
+				device.save
+			end
+		end
+		params[:dump][:file] = nil
+		flash[:message] = "Файл успешно импортирован, в базу добавлено #{n} записей."
+		redirect_to devices_path 	
   	end
 
 
