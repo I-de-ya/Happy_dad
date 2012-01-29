@@ -7,13 +7,12 @@ class AutoPositionsController < ApplicationController
 
   def import_from_csv
     require 'csv'
-    if request.post? && params[:dump][:file].present?
-      infile = params[:dump][:file].read().force_encoding("UTF-8")
+    if request.post? && params[:dump][:file_path].present?
+      file_path = params[:dump][:file_path]
       n = 0
       
-      CSV.parse(infile) do |row|
+      CSV.open(file_path, "rb:UTF-8", {:col_sep => ";"}).each do |row|
         n += 1
-        next if row.join.blank?
         auto_position = AutoPosition.new
         auto_position.automation_area = row[0]
         auto_position.technological_unit = row[1]
@@ -27,7 +26,7 @@ class AutoPositionsController < ApplicationController
         auto_position.save
       end
     end
-    params[:dump][:file] = nil
+    params[:dump][:file_path] = nil
     flash.now[:message] = "Файл успешно импортирован, в базу добавлено #{n} записей."
     redirect_to auto_positions_path  
     end

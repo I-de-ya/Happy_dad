@@ -9,7 +9,6 @@
 			%th{"rowspan" => "2"} Позиция
 			%th{"colspan" => "7"} Снять с позиции
 			%th{"colspan" => "10"} Установить на позицию
-			%th{"rowspan" => "2"} Сделать замену??
 			%th{"rowspan" => "2"} 
 		%tr
 			%th{"colspan" => "2"} Вход
@@ -30,9 +29,9 @@
 			- number+=1
 			%tr
 				%td= number
-				%td= device.auto_position.automation_area
-				%td= device.auto_position.technological_unit
-				%td= device.auto_position.title
+				%td= #device.auto_position.automation_area
+				%td= #device.auto_position.technological_unit
+				%td= #device.auto_position.title
 				%td= device.input_range
 				%td= device.input_measurement_units
 				%td= device.output_range
@@ -50,7 +49,6 @@
 				%td= device.replacement.form_of_mr
 				%td= device.replacement.prev_mr_date
 				%td= device.replacement.next_mr_date
-				%td [ ] - чекбоксик
 				%td= link_to 'Удалить пару', delete_replacement_device_path(device)
 %p P.S. ?? - это поле возможно будет, а возможно и нет
-%p{"align" => "right"}= link_to "Кнопка (замены сделаны)", '#'
+%p{"align" => "right"}= link_to "Кнопка (Отдать подрядчику)", '#'

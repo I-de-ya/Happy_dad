@@ -14,7 +14,6 @@
 		%tr
 			%th= sortable "uniq_number_in_ASOMI", "Уникальный номер в АСОМИ"
 			%th= sortable "title", "Наименование СИ"
-			%th= sortable "created_at", "Создан"
 			%th= sortable "device_type", "Тип СИ"
 			%th= sortable "form_of_mr", "Вид МР"
 			%th= sortable "inventory_number",  "Инвентарный номер"
@@ -51,7 +50,6 @@
 							%td.green
 								= link_to device.title, device_path(device)
 
-					%td= device.created_at.to_date
 					%td= device.device_type
 					%td= device.form_of_mr
 					%td= device.inventory_number
@@ -59,8 +57,8 @@
 					%td= #device.status.title
 					%td= device.mr_unit
 					%td= #device.location.title
-					%td= device.prev_mr_date
-					%td= device.next_mr_date
+					%td= device.prev_mr_date.strftime("%d.%m.%Y")
+					%td= device.next_mr_date.strftime("%d.%m.%Y")
 					%td= device.auto_position ? device.auto_position.automation_area : "-"
 					%td= device.auto_position ? device.auto_position.technological_unit : "-"
 					%td= device.auto_position ? device.auto_position.title : "-"
@@ -74,7 +72,6 @@
 					%tr
 						%td= device.uniq_number_in_ASOMI
 						%td= link_to device.title, device_path(device)
-						%td= device.created_at.to_date
 						%td= device.device_type
 						%td= device.form_of_mr
 						%td= device.inventory_number
@@ -82,8 +79,8 @@
 						%td= #device.status.title
 						%td= device.mr_unit
 						%td= #device.location.title
-						%td= device.prev_mr_date
-						%td= device.next_mr_date
+						%td= device.prev_mr_date.strftime("%d.%m.%Y")
+						%td= device.next_mr_date.strftime("%d.%m.%Y")
 						%td= device.auto_position ? device.auto_position.automation_area : "-"
 						%td= device.auto_position ? device.auto_position.technological_unit : "-"
 						%td= device.auto_position ? device.auto_position.title : "-"

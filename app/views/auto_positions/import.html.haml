@@ -1,4 +1,4 @@
 = form_for :dump, :url => {:controller => "auto_positions", :action => "import_from_csv"} do |f|
-	Выберите путь к файлу для импорта
-	= f.file_field :file
+	Введите путь к файлу для импорта
+	= f.text_field :file_path, :value => "C:\\Users\\innerwhisper\\Desktop\\Заполнение БД\\import_auto_positions.csv"
 	%p= submit_tag 'Импортировать базу'
