@@ -33,6 +33,7 @@ HappyDad::Application.routes.draw do
 			get 'replacements_list'
 			post 'import_from_csv'
       get 'import'
+      post 'select_page'
 		end
 	end
 	

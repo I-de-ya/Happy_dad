@@ -1,5 +1,5 @@
 # coding: utf-8
-
+= "Записей найдено: #{@devices_number}"
 .search
 	= form_tag devices_path, :method => 'get' do
 		= select_tag :qwerty, options_for_select(@attributes,@attr)
@@ -90,8 +90,9 @@
 						%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
 .right
 	= link_to 'Новый прибор', new_device_path
-Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
 - if @search == nil
-	= will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
-= select_tag :page, options_for_select([1, 2, 3],@page.to_i)
-%p P.S. ?? - это поле возможно будет, а возможно и нет
+	= will_paginate @devices
+	.select_page	
+		= form_for :dump, :url => {:controller => "devices", :action => "select_page"} do |f|
+			= f.select :page_selection, options_for_select([*1..@devices.total_pages.to_i],@page.to_i)
+			= f.submit "Перейти"
