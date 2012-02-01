@@ -104,10 +104,13 @@ th{
 	background-color: #BABABA;
 	color: black;
 }
-   
+
+tr{
+	background-color:white;
+}
+
 td{ 
 	border: 2px solid black;
-	background-color: white;
 }
 
 .red {
@@ -185,11 +188,18 @@ td{
   *:first-child + html .digg_pagination {
     overflow: hidden; }
 
-
-.will_paginator{
-
-}
-
 .page_selection{
 	margin-left:0px;
+}
+
+tr.red_row{
+	background-color:red;
+}
+
+tr.yellow_row{
+	background-color:yellow;
+}
+
+tr.green_row{
+	background-color:#7CFC00;
 }

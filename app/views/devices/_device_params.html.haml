@@ -1,0 +1,18 @@
+%td= device.uniq_number_in_ASOMI
+%td= link_to device.title, device_path(device)
+%td= device.device_type
+%td= device.form_of_mr
+%td= device.inventory_number
+%td= device.serial_number
+%td= #device.status.title
+%td= device.mr_unit
+%td= #device.location.title
+%td= device.prev_mr_date.nil? ? '-' : device.prev_mr_date.strftime("%d.%m.%Y")
+%td= device.next_mr_date.nil? ? '-' : device.next_mr_date.strftime("%d.%m.%Y")
+%td= device.auto_position ? device.auto_position.automation_area : "-"
+%td= device.auto_position ? device.auto_position.technological_unit : "-"
+%td= device.auto_position ? device.auto_position.title : "-"
+%td= device.replace_param
+%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
+%td= link_to 'Редактировать', edit_device_path(device)
+%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
