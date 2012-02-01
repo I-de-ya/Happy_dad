@@ -1,5 +1,5 @@
 # coding: utf-8
-= "Записей найдено: #{@devices_number}"
+= "Найдено записей: #{@devices_number}"
 .search
 	= form_tag devices_path, :method => 'get' do
 		= select_tag :qwerty, options_for_select(@attributes,@attr)
