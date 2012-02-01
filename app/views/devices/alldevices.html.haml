@@ -79,6 +79,6 @@
 	= link_to 'Новый прибор', new_device_path
 Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
 - if @search == nil
-	= will_paginate @devices, :inner_window => 1, :separator => "    ", :renderer => "FancyRenderer"
+	= will_paginate @devices
 = select_tag :page, options_for_select([1, 2, 3],@page.to_i)
 %p P.S. ?? - это поле возможно будет, а возможно и нет
