@@ -9,4 +9,14 @@ class Device < ActiveRecord::Base
 	def find_matching
 	  Device.where(:factor => device.factor).where( "id IS NOT ?", self.id)
   	end
+
+  	def self.search_and_paginate(search, search_field, page)
+  		if search
+  			paginate :per_page => 10, :page => page,
+           			  :conditions => [search_field + ' like ?', "%#{search}%"]
+  		else
+    		paginate :per_page => 10, :page => page
+  		end
+  	end
+
 end

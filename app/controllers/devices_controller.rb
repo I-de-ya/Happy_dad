@@ -12,14 +12,19 @@ class DevicesController < ApplicationController
 
 		@attr = params[:qwerty]
 		@search = params[:search]
-		@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i
-		if @search == nil
-			@devices = Device.where('next_mr_date NOT ?', nil).page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
-			@devices_number = Device.where('next_mr_date NOT ?', nil).size
-		else
-			@devices = Device.order(sort_column + " " + sort_direction)
-			@devices_number = Device.order(sort_column + " " + sort_direction).size
-		end
+		
+		@devices = Device.where('next_mr_date NOT ?', nil).order(sort_column + " " + sort_direction).search_and_paginate(params[:search],params[:qwerty],params[:page])#.page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
+		@devices_number = @devices.count
+
+
+		#@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i
+		#if @search == nil
+		#	@devices = Device.where('next_mr_date NOT ?', nil).page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
+		#	@devices_number = Device.where('next_mr_date NOT ?', nil).size
+		#else
+		#	@devices = Device.order(sort_column + " " + sort_direction)
+		#	@devices_number = Device.order(sort_column + " " + sort_direction).size
+		#end
 	end
 
 	def alldevices

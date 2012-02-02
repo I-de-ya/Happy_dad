@@ -32,27 +32,29 @@
 			%th ??
 
 		- @devices.each do |device|
-			-if @search == nil
-				- if (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 30
-					%tr.red_row
-						= render :partial => 'device_params', :locals => {:device => device}
-				- elsif (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 60
-					%tr.yellow_row
-						= render :partial => 'device_params', :locals => {:device => device}
-				- else
-					%tr.green_row
-						= render :partial => 'device_params', :locals => {:device => device}
+		
+			-#if @search == nil
+			- if (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 30
+				%tr.red_row
+					= render :partial => 'device_params', :locals => {:device => device}
+			- elsif (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 60
+				%tr.yellow_row
+					= render :partial => 'device_params', :locals => {:device => device}
+			- else
+				%tr.green_row
+					= render :partial => 'device_params', :locals => {:device => device}
+		-#
 			- else
 				- if  @regsearch.match(device.attributes[@attr].to_s.downcase) == nil
 				- else
-					%tr
-						= render :partial => 'device_params', :locals => {:device => device}
+				%tr
+					= render :partial => 'device_params', :locals => {:device => device}
 .right
 	= link_to 'Новый прибор', new_device_path
-- if @search == nil
-	.digg_pagination
-		= will_paginate @devices, :previous_label => '&laquo; Туда', :next_label => 'Сюда &raquo;'#, :page_links => false
-	.page_selection
-		= form_for :dump, :url => {:controller => "devices", :action => "select_page"} do |f|
-			= f.select :page_selection, options_for_select([*1..@devices.total_pages.to_i],@page.to_i)
-			= f.submit "Перейти"
+-# if @search == nil
+.digg_pagination
+	= will_paginate @devices, :previous_label => '&laquo; Туда', :next_label => 'Сюда &raquo;'#, :page_links => false
+.page_selection
+	= form_for :dump, :url => {:controller => "devices", :action => "select_page"} do |f|
+		= f.select :page_selection, options_for_select([*1..@devices.total_pages.to_i],@page.to_i)
+		= f.submit "Перейти"
