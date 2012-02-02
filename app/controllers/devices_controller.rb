@@ -9,7 +9,6 @@ class DevicesController < ApplicationController
 		@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "Уникальный номер в АСОМИ", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "Золото", "Серебро", "Платина", "PG_metals", "subreport_number", "ENS_number", "Комментарии", "form_of_mr"]
 		@attributes = [@names, @device].transpose
 		#attributes = [ @names,@device ]
-		#@attributes = Hash[*attributes.transpose.flatten]
 
 		@attr = params[:qwerty]
 		@search = params[:search]
