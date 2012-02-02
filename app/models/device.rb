@@ -14,12 +14,12 @@ class Device < ActiveRecord::Base
 
   	def self.search_and_paginate(search, search_field, page)
   		if search
-  			paginate :per_page => 10, :page => page,
+  			paginate :per_page => 15, :page => page,
            			  :conditions => [search_field + ' like ?', "%#{search}%"] 
            			  # данный поиск не является нечувствительным к регистру для русского языка (для английского - является)
            			  # хотелось бы понять отличие "%#{search}%" от "#{search}", что делают %% ?
   		else
-    		paginate :per_page => 10, :page => page
+    		paginate :per_page => 15, :page => page
   		end
   	end
 

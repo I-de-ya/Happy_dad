@@ -142,6 +142,7 @@ tr.green_row{
 td{ 
 	border: 2px solid black;
 	text-align: center;
+	white-space: nowrap;
 }
 
 .red {
