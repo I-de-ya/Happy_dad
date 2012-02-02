@@ -5,15 +5,19 @@ class DevicesController < ApplicationController
 		params[:page] ||= session[:page_selection]
 		session[:page_selection] = nil
 		@page = params[:page]
-		@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement", "replacement_id"]
-		@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "Уникальный номер в АСОМИ", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "Золото", "Серебро", "Платина", "PG_metals", "subreport_number", "ENS_number", "Комментарии", "form_of_mr"]
+		
+		@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement", "replacement_id", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "PG_metals", "subreport_number", "ENS_number", "gold", "silver", "platinum", "comment"]
+		@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "Уникальный номер в АСОМИ", "Вид МР"]
+		
+		#@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement", "replacement_id"]
+		#@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "Уникальный номер в АСОМИ", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "Золото", "Серебро", "Платина", "PG_metals", "subreport_number", "ENS_number", "Комментарии", "form_of_mr"]
 		@attributes = [@names, @device].transpose
 		#attributes = [ @names,@device ]
 
 		@attr = params[:qwerty]
 		@search = params[:search]
 		
-		@devices = Device.where('next_mr_date NOT ?', nil).order(sort_column + " " + sort_direction).search_and_paginate(params[:search],params[:qwerty],params[:page])#.page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
+		@devices = Device.with_next_mr_date.order(sort_column + " " + sort_direction).search_and_paginate(params[:search],params[:qwerty],params[:page])#.page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
 		@devices_number = @devices.count
 
 
@@ -28,16 +32,27 @@ class DevicesController < ApplicationController
 	end
 
 	def alldevices
+		params[:page] ||= session[:page_selection]
+		session[:page_selection] = nil
 		@page = params[:page]
-		@device = Device.attribute_names - ["id", "created_at","updated_at"]
+		@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement", "replacement_id"]
+		@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "Уникальный номер в АСОМИ", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "Золото", "Серебро", "Платина", "PG_metals", "subreport_number", "ENS_number", "Комментарии", "form_of_mr"]
+		@attributes = [@names, @device].transpose
+		#attributes = [ @names,@device ]
+
 		@attr = params[:qwerty]
 		@search = params[:search]
+		
+		@devices = Device.order(sort_column + " " + sort_direction).search_and_paginate(params[:search],params[:qwerty],params[:page])#.page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
+		@devices_number = @devices.count
+=begin
 		@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i
 		if @search == nil
 			@devices = Device.paginate(:page => params[:page], :per_page => 10).order(sort_column + " " + sort_direction)
 		else
 			@devices = Device.order(sort_column + " " + sort_direction)
 		end
+=end
 	end
 		
 	
@@ -69,7 +84,6 @@ class DevicesController < ApplicationController
 			else
 				render :action => "new"
 				# Можно ли заменить на render "new"?
-				# И в чем разница между render "new" и render 'new'?
 			end
 	end
 	

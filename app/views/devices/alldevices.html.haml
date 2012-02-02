@@ -1,18 +1,19 @@
+# coding: utf-8
+= "Найдено записей: #{@devices_number}"
 .search
 	= form_tag devices_path, :method => 'get' do
-		= select_tag :qwerty, options_for_select(@device, @device)
+		= select_tag :qwerty, options_for_select(@attributes,@attr)
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
 %h1.paragraph Список всех приборов
 = link_to "Импортировать базу по приборам из файла", import_devices_path
 %br
-= link_to "Список рабочих приборов", devices_path
+= link_to "Список рабочих (с датой следующей МР) приборов", devices_path
 .scroll
 	%table
 		%tr
 			%th= sortable "uniq_number_in_ASOMI", "Уникальный номер в АСОМИ"
 			%th= sortable "title", "Наименование СИ"
-			%th= sortable "created_at", "Создан"
 			%th= sortable "device_type", "Тип СИ"
 			%th= sortable "form_of_mr", "Вид МР"
 			%th= sortable "inventory_number",  "Инвентарный номер"
@@ -31,54 +32,32 @@
 			%th ??
 
 		- @devices.each do |device|
+			%tr
+				= render :partial => 'device_params', :locals => {:device => device}
+
+		-# <-- Haml comment
 			-if @search == nil
-				%tr
-					%td= device.uniq_number_in_ASOMI
-					%td= link_to device.title, device_path(device)
-					%td= device.created_at.to_date
-					%td= device.device_type
-					%td= device.form_of_mr
-					%td= device.inventory_number
-					%td= device.serial_number
-					%td= #device.status.title
-					%td= device.mr_unit
-					%td= #device.location.title
-					%td= device.prev_mr_date
-					%td= device.next_mr_date
-					%td= device.auto_position ? device.auto_position.automation_area : "-"
-					%td= device.auto_position ? device.auto_position.technological_unit : "-"
-					%td= device.auto_position ? device.auto_position.title : "-"
-					%td= device.replace_param
-					%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
-					%td= link_to 'Редактировать', edit_device_path(device)
-					%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
+			- if (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 30
+				%tr.red_row
+					= render :partial => 'device_params', :locals => {:device => device}
+			- elsif (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 60
+				%tr.yellow_row
+					= render :partial => 'device_params', :locals => {:device => device}
+			- else
+				%tr.green_row
+					= render :partial => 'device_params', :locals => {:device => device}
+		-# <-- Haml comment
 			- else
 				- if  @regsearch.match(device.attributes[@attr].to_s.downcase) == nil
 				- else
-					%tr
-						%td= device.uniq_number_in_ASOMI
-						%td= link_to device.title, device_path(device)
-						%td= device.created_at.to_date
-						%td= device.device_type
-						%td= device.form_of_mr
-						%td= device.inventory_number
-						%td= device.serial_number
-						%td= #device.status.title
-						%td= device.mr_unit
-						%td= #device.location.title
-						%td= device.prev_mr_date
-						%td= device.next_mr_date
-						%td= device.auto_position ? device.auto_position.automation_area : "-"
-						%td= device.auto_position ? device.auto_position.technological_unit : "-"
-						%td= device.auto_position ? device.auto_position.title : "-"
-						%td= device.replace_param
-						%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
-						%td= link_to 'Редактировать', edit_device_path(device)
-						%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
+				%tr
+					= render :partial => 'device_params', :locals => {:device => device}
 .right
 	= link_to 'Новый прибор', new_device_path
-Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
-- if @search == nil
-	= will_paginate @devices
-= select_tag :page, options_for_select([1, 2, 3],@page.to_i)
-%p P.S. ?? - это поле возможно будет, а возможно и нет
+-# if @search == nil
+.digg_pagination
+	= will_paginate @devices, :previous_label => '&laquo; Туда', :next_label => 'Сюда &raquo;'#, :page_links => false
+.page_selection
+	= form_for :dump, :url => {:controller => "devices", :action => "select_page"} do |f|
+		= f.select :page_selection, options_for_select([*1..@devices.total_pages.to_i],@page.to_i)
+		= f.submit "Перейти"

@@ -5,7 +5,7 @@
 		= select_tag :qwerty, options_for_select(@attributes,@attr)
 		= text_field_tag :search, params[:search], :placeholder => 'Введите параметры поиска'
 		= submit_tag "Найти", :title => nil
-%h1.paragraph Список рабочих приборов
+%h1.paragraph Список рабочих (с датой следующей МР) приборов
 = link_to "Импортировать базу по приборам из файла", import_devices_path
 %br
 = link_to "Список всех приборов", alldevices_devices_path
@@ -33,7 +33,7 @@
 
 		- @devices.each do |device|
 		
-			-#if @search == nil
+			-#if @search == nil <-- Haml comment
 			- if (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 30
 				%tr.red_row
 					= render :partial => 'device_params', :locals => {:device => device}
@@ -43,7 +43,7 @@
 			- else
 				%tr.green_row
 					= render :partial => 'device_params', :locals => {:device => device}
-		-#
+		-# <-- Haml comment
 			- else
 				- if  @regsearch.match(device.attributes[@attr].to_s.downcase) == nil
 				- else

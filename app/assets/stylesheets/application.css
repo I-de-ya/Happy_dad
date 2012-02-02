@@ -92,6 +92,8 @@ h1.paragraph {
 	margin-top:10px;
 }
 
+/* Tables */
+
 table{
 	width: 100%;
 	border: 2px black;
@@ -122,11 +124,24 @@ th .desc {
 
 tr{
 	background-color:white;
-
 }
+
+tr.red_row{
+	background-color:#FF7F7F;
+}
+
+tr.yellow_row{
+	background-color:#F6F549;
+}
+
+tr.green_row{
+	background-color:#6AE444;
+}
+
 
 td{ 
 	border: 2px solid black;
+	text-align: center;
 }
 
 .red {
@@ -206,16 +221,4 @@ td{
 
 .page_selection{
 	margin-left:0px;
-}
-
-tr.red_row{
-	background-color:#FF7F7F;
-}
-
-tr.yellow_row{
-	background-color:#F6F549;
-}
-
-tr.green_row{
-	background-color:#6AE444;
 }
