@@ -51,7 +51,7 @@
 	= link_to 'Новый прибор', new_device_path
 - if @search == nil
 	.digg_pagination
-		= will_paginate @devices, :previous_label => '&laquo; Туда', :next_label => 'Сюда &raquo;'#optionally, :page_links => false
+		= will_paginate @devices, :previous_label => '&laquo; Туда', :next_label => 'Сюда &raquo;'#, :page_links => false
 	.page_selection
 		= form_for :dump, :url => {:controller => "devices", :action => "select_page"} do |f|
 			= f.select :page_selection, options_for_select([*1..@devices.total_pages.to_i],@page.to_i)

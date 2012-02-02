@@ -15,7 +15,7 @@ class DevicesController < ApplicationController
 		@search = params[:search]
 		@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i
 		if @search == nil
-			@devices = Device.where('next_mr_date NOT ?', nil).page(params[:page]).per_page(10).order(sort_column + " " + sort_direction)
+			@devices = Device.where('next_mr_date NOT ?', nil).page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
 			@devices_number = Device.where('next_mr_date NOT ?', nil).size
 		else
 			@devices = Device.order(sort_column + " " + sort_direction)
