@@ -8,10 +8,6 @@ class Device < ActiveRecord::Base
 
 	scope :with_next_mr_date, where('next_mr_date NOT ?', nil)
 
-	def find_matching
-	  Device.where(:factor => device.factor).where( "id IS NOT ?", self.id)
-  	end
-
   	def self.search_and_paginate(search, search_field, page)
   		if search
   			paginate :per_page => 15, :page => page,
