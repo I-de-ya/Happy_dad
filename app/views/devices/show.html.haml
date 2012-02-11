@@ -52,8 +52,8 @@
 			%th Инвентарный номер:
 		%tr
 			%td= @device.title
-			%td= @device.location
-			%td= @device.status
+			%td= @device.location.title
+			%td= @device.status.title
 			%td= @device.uniq_number_in_ASOMI
 			%td= @device.device_type
 			%td= @device.model

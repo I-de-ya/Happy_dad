@@ -1,10 +1,11 @@
 class Device < ActiveRecord::Base
 	belongs_to :status
 	belongs_to :location
-	has_one :auto_position
+	has_many :channels
 	has_many :logs
-	
-	belongs_to :replacement, :class_name => "Device", :foreign_key => "replacement_id"
+
+  has_one :replacement_pair
+  has_one :replacement, :through => :replacement_pair, :source => :replacement
 
 	scope :with_next_mr_date, where('next_mr_date NOT ?', nil)
 
@@ -18,5 +19,4 @@ class Device < ActiveRecord::Base
     		paginate :per_page => 15, :page => page
   		end
   	end
-
 end

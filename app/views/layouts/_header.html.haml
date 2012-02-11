@@ -3,9 +3,11 @@
 	|
 	= link_to "Статусы", statuses_path
 	|
-	= link_to "Позиции автоматизации", auto_positions_path
+	= link_to "Позиции автоматизации (#{AutoPosition.count})", auto_positions_path
 	|
 	= link_to "Логи СИ", logs_path
+	|
+	= link_to "Заявки (#{ReplacementOrder.count})", '#'
 	.account
 		- if signed_in?
 			= @current_user.name
@@ -16,6 +18,5 @@
 	%br
 		.menu
 			%ul
-				%li= link_to "Приборы", devices_path
-				%li= link_to "Замены", replacements_list_devices_path
-
+				%li= link_to "Приборы (#{Device.count})", devices_path
+				%li= link_to "Замены (#{ReplacementPair.count})", replacement_pairs_path

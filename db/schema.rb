@@ -11,10 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120101152955) do
+ActiveRecord::Schema.define(:version => 20120211135827) do
 
   create_table "auto_positions", :force => true do |t|
     t.string   "title"
+    t.integer  "channel_id"
     t.string   "project_specification"
     t.string   "technological_unit"
     t.string   "automation_area"
@@ -24,15 +25,22 @@ ActiveRecord::Schema.define(:version => 20120101152955) do
     t.string   "parameter_measurement_units"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "channels", :force => true do |t|
+    t.string   "title"
     t.integer  "device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "devices", :force => true do |t|
     t.string   "title"
+    t.integer  "location_id"
+    t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status_id"
-    t.integer  "location_id"
+    t.integer  "uniq_number_in_ASOMI"
     t.string   "device_type"
     t.integer  "inventory_number"
     t.integer  "serial_number"
@@ -40,14 +48,12 @@ ActiveRecord::Schema.define(:version => 20120101152955) do
     t.date     "next_mr_date"
     t.date     "prev_mr_date"
     t.integer  "replace_param"
-    t.integer  "replacement_id"
-    t.boolean  "has_replacement"
+    t.string   "form_of_mr"
     t.string   "input_range"
     t.string   "input_measurement_units"
     t.string   "output_range"
     t.string   "output_measurement_units"
     t.string   "model"
-    t.integer  "uniq_number_in_ASOMI"
     t.date     "year_of_production"
     t.date     "beginning_operation_year"
     t.string   "changeover_input_range"
@@ -68,14 +74,14 @@ ActiveRecord::Schema.define(:version => 20120101152955) do
     t.string   "subreport_number"
     t.string   "ENS_number"
     t.string   "comment"
-    t.string   "form_of_mr"
+    t.boolean  "has_replacement"
   end
 
   create_table "location_statuses", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "location_id"
     t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "locations", :force => true do |t|
@@ -85,18 +91,24 @@ ActiveRecord::Schema.define(:version => 20120101152955) do
   end
 
   create_table "logs", :force => true do |t|
-    t.string   "status"
+    t.integer  "device_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "device_id"
     t.string   "old_value"
     t.string   "new_value"
     t.string   "attr"
   end
 
+  create_table "replacement_orders", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "replacement_pairs", :force => true do |t|
     t.integer  "device_id"
     t.integer  "replacement_id"
+    t.integer  "replacement_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

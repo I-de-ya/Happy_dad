@@ -1,6 +1,7 @@
 # coding: utf-8
 class DevicesController < ApplicationController
 	helper_method :sort_column, :sort_direction
+	
 	def index
 		params[:page] ||= session[:page_selection]
 		session[:page_selection] = nil
@@ -19,7 +20,6 @@ class DevicesController < ApplicationController
 		
 		@devices = Device.with_next_mr_date.order(sort_column + " " + sort_direction).search_and_paginate(params[:search],params[:qwerty],params[:page])#.page(params[:page]).per_page(20).order(sort_column + " " + sort_direction)
 		@devices_number = @devices.count
-
 
 		#@regsearch = /\A[\s\w\"\(\)А-Яа-я\-.]*#{@search}[\s\w\"\(\)А-Яа-я\-.]*\z/i
 		#if @search == nil
@@ -53,24 +53,6 @@ class DevicesController < ApplicationController
 			@devices = Device.order(sort_column + " " + sort_direction)
 		end
 =end
-	end
-		
-	
-	def replacements_list
-		@devices = Device.where(:has_replacement=>true)
-	
-		respond_to do |format|
-			format.html
-			format.xls { send_data @devices.to_xls(:columns => [{:auto_position => [:automation_area,:technological_unit,:title]},:input_range,:input_measurement_units,:output_range,:output_measurement_units,:device_type,:model,:serial_number, {:replacement => [:input_range,:input_measurement_units,:output_range,:output_measurement_units,:device_type,:model,:serial_number,:form_of_mr,:prev_mr_date,:next_mr_date]}], :headers => ["С позиции", "На позицию"]), :filename => 'Замены приборов.xls'}
-		end
-	end
-	
-	def delete_replacement
-		device = Device.find(params[:id])
-		device.replacement_id = nil
-		device.has_replacement = nil
-		device.save
-		redirect_to replacements_list_devices_path
 	end
 	
 	def new
@@ -135,12 +117,22 @@ class DevicesController < ApplicationController
 	def make_replacement_pair
 		replacement = Device.find(params[:id])
 		device = Device.find(session[:current_device_id])
-		device.replacement_id = replacement.id
-		device.has_replacement = true
+		device.replacement = replacement
 		device.save
 		session[:current_device_id] = nil
-		redirect_to replacements_list_devices_path
+		redirect_to replacement_pairs_path
 	end
+	
+=begin	
+	def replacements_list
+		@devices = Device.where(:has_replacement => true)
+	
+		respond_to do |format|
+			format.html
+			format.xls { send_data @devices.to_xls(:columns => [{:auto_position => [:automation_area,:technological_unit,:title]},:input_range,:input_measurement_units,:output_range,:output_measurement_units,:device_type,:model,:serial_number, {:replacement => [:input_range,:input_measurement_units,:output_range,:output_measurement_units,:device_type,:model,:serial_number,:form_of_mr,:prev_mr_date,:next_mr_date]}], :headers => ["С позиции", "На позицию"]), :filename => 'Замены приборов.xls'}
+		end
+	end
+=end
 
 	def log
 		@device = Device.find(params[:id])

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReplacementPairsControllerTest < ActionController::TestCase
+class ReplacementOrderTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

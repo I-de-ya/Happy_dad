@@ -3,9 +3,9 @@
 one:
   device_id: 1
   replacement_id: 1
-  replacement_order_id: 1
+  title: MyString
 
 two:
   device_id: 1
   replacement_id: 1
-  replacement_order_id: 1
+  title: MyString

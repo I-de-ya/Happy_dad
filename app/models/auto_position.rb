@@ -1,3 +1,3 @@
 class AutoPosition < ActiveRecord::Base
-belongs_to :device
+	belongs_to :channel
 end

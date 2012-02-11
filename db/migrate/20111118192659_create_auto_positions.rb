@@ -2,6 +2,7 @@ class CreateAutoPositions < ActiveRecord::Migration
   def change
     create_table :auto_positions do |t|
       t.string :title
+      t.integer :channel_id
       t.string :project_specification
       t.string :technological_unit
       t.string :automation_area

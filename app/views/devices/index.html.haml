@@ -32,7 +32,6 @@
 			%th ??
 
 		- @devices.each do |device|
-		
 			-#if @search == nil <-- Haml comment
 			- if (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 30
 				%tr.red_row

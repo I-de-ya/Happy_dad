@@ -1,0 +1,2 @@
+class ReplacementOrdersController < ApplicationController
+end
