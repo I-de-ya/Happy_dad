@@ -4,9 +4,9 @@
 %td= device.form_of_mr
 %td= device.inventory_number
 %td= device.serial_number
-%td= #device.status.title
+%td= device.status.title
 %td= device.mr_unit
-%td= #device.location.title
+%td= device.location.title
 %td= device.prev_mr_date.nil? ? '-' : device.prev_mr_date.strftime("%d.%m.%Y")
 %td= device.next_mr_date.nil? ? '-' : device.next_mr_date.strftime("%d.%m.%Y")
 %td= device.auto_position ? device.auto_position.automation_area : "-"
