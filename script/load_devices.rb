@@ -21,4 +21,3 @@ Device.transaction do
 			:replace_param => rand(5))
 	end
 end
-	
