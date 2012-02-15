@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20120211135827) do
     t.string   "subreport_number"
     t.string   "ENS_number"
     t.string   "comment"
-    t.boolean  "has_replacement"
   end
 
   create_table "location_statuses", :force => true do |t|

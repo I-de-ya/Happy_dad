@@ -19,4 +19,5 @@ class Device < ActiveRecord::Base
     		paginate :per_page => 15, :page => page
   		end
   	end
+
 end

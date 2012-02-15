@@ -12,6 +12,7 @@
 .scroll
 	%table
 		%tr
+			%th ??
 			%th= sortable "uniq_number_in_ASOMI", "Уникальный номер в АСОМИ"
 			%th= sortable "title", "Наименование СИ"
 			%th= sortable "device_type", "Тип СИ"
@@ -23,18 +24,54 @@
 			%th= sortable "location_id", "Местонахождение СИ, рабочая среда"
 			%th= sortable "prev_mr_date", "Дата последней МР"
 			%th= sortable "next_mr_date", "Дата следующей МР"
+			%th= sortable "replace_param", "Параметр заменяемости"
+			%th Каналы
 			%th= sortable "auto_position.automation_area", "Участок автоматизации"
 			%th "Технологический агрегат"
 			%th "Позиция"
-			%th= sortable "replace_param", "Параметр заменяемости"
-			%th "Взаимозаменяемость данного прибора"
-			%th ??
-			%th ??
 
 		- @devices.each do |device|
+			%tbody
+				%tr
+					%td{:rowspan => rows(device)}
+						= link_to 'Подобрать замену', replacement_candidates_device_path(device)
+						%br
+						= link_to 'Редактировать', edit_device_path(device)
+					%td{:rowspan => rows(device)}
+						= device.uniq_number_in_ASOMI
+					%td{:rowspan => rows(device)}
+						= link_to device.title, device_path(device)
+					%td{:rowspan => rows(device)}
+						= device.device_type
+					%td{:rowspan => rows(device)}
+						= device.form_of_mr
+					%td{:rowspan => rows(device)}
+						= device.inventory_number
+					%td{:rowspan => rows(device)}
+						= device.serial_number
+					%td{:rowspan => rows(device)}
+						= device.status.title
+					%td{:rowspan => rows(device)}
+						= device.mr_unit
+					%td{:rowspan => rows(device)}
+						= device.location.title
+					%td{:rowspan => rows(device)}
+						= device.prev_mr_date.nil? ? '-' : device.prev_mr_date.strftime("%d.%m.%Y")
+					%td{:rowspan => rows(device)}
+						= device.next_mr_date.nil? ? '-' : device.next_mr_date.strftime("%d.%m.%Y")
+					%td{:rowspan => rows(device)}
+						= device.replace_param
+					- device.channels.each do |channel|
+						%tr	
+							%td= channel.title
+							%td= channel.auto_position ? channel.auto_position.title : "-"
+							%td=# channel.auto_position ? device.auto_position.automation_area : "-"
+							%td=# channel.auto_position ? device.auto_position.technological_unit : "-"
+			
+					
+		-# <-- Haml comment	
 			%tr
 				= render :partial => 'device_params', :locals => {:device => device}
-
 		-# <-- Haml comment
 			-if @search == nil
 			- if (device.next_mr_date.to_date - DateTime.now.to_date).to_i < 30
