@@ -28,7 +28,7 @@ end
 Channel.transaction do
 	(1..90).each do |i|
 		Channel.create(
-			:device_id => rand(Device.first.id..Device.last.id),
+			:device_id => Device.first.id + rand(Device.last.id - Device.first.id + 1),
 			:title => "Канал #{rand(5).to_s}"
 			)
 	end
