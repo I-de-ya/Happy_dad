@@ -2,7 +2,7 @@
 class ReplacementPairsController < ApplicationController
 	
 	def index
-		@pairs = ReplacementPair.all
+		@pairs = ReplacementPair.where(:replacement_order_id => nil)
 
 		respond_to do |format|
 			format.html
@@ -13,6 +13,6 @@ class ReplacementPairsController < ApplicationController
 	def destroy
 		@pair = ReplacementPair.find(params[:id]).destroy
   		flash[:success] = "Пара была удалена."
-  		redirect_to replacement_pairs_path
+  		redirect_to replacement_orders_path
 	end
 end

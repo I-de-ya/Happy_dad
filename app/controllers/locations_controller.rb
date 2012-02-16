@@ -35,7 +35,7 @@ class LocationsController < ApplicationController
 
 	def show
 		@location = Location.find(params[:id])
-		@statuses = Location.find(params[:id]).statuses.all
+		@statuses = @location.statuses.all
 	end
 	
 	def destroy

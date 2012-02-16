@@ -1,0 +1,55 @@
+%p
+	%b Наименование местоположения:
+	= @order.title
+.scroll
+	%table
+		%tr
+			%th{"rowspan" => "2"} № п/п
+			%th{"rowspan" => "2"} Участок
+			%th{"rowspan" => "2"} Агрегат
+			%th{"rowspan" => "2"} Позиция
+			%th{"colspan" => "7"} Снять с позиции
+			%th{"colspan" => "10"} Установить на позицию
+			%th{"rowspan" => "2"} 
+		%tr
+			%th{"colspan" => "2"} Вход
+			%th{"colspan" => "2"} Выход
+			%th Тип прибора
+			%th Модель
+			%th Заводской №
+			%th{"colspan" => "2"} Вход
+			%th{"colspan" => "2"} Выход
+			%th Тип прибора
+			%th Модель
+			%th Заводской №
+			%th Вид МР
+			%th Дата предыдущей МР
+			%th Срок следующей МР
+		- number = 0
+		- @pairs.each do |pair|
+			- number += 1
+			%tr
+				%td= number
+				%td= #device.auto_position.automation_area
+				%td= #device.auto_position.technological_unit
+				%td= #device.auto_position.title
+				%td= pair.device.input_range
+				%td= pair.device.input_measurement_units
+				%td= pair.device.output_range
+				%td= pair.device.output_measurement_units
+				%td= pair.device.device_type
+				%td= pair.device.model
+				%td= pair.device.serial_number
+				%td= pair.replacement.input_range
+				%td= pair.replacement.input_measurement_units
+				%td= pair.replacement.output_range
+				%td= pair.replacement.output_measurement_units
+				%td= pair.replacement.device_type
+				%td= pair.replacement.model
+				%td= pair.replacement.serial_number
+				%td= pair.replacement.form_of_mr
+				%td= pair.replacement.prev_mr_date
+				%td= pair.replacement.next_mr_date
+				%td= link_to 'Удалить пару', pair, :confirm => 'Вы уверены?', :method => :delete
+= link_to 'Редактировать', edit_location_path(@location)
+%p= link_to '<< Назад, к списку местоположений', locations_path

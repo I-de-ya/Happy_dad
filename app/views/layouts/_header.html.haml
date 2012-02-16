@@ -19,4 +19,4 @@
 		.menu
 			%ul
 				%li= link_to "Приборы (#{Device.count})", devices_path
-				%li= link_to "Замены (#{ReplacementPair.count})", replacement_pairs_path
+				%li= link_to "Замены (#{ReplacementPair.where(:replacement_order_id => nil).count})", replacement_pairs_path

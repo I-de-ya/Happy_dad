@@ -8,7 +8,7 @@ status = [2,3,15,17,19,23,24]
 device_type = ['Метран-43-ДИ','ДИСК-250', 'Сапфир-22-ДИ', '506T', 'ТмМП-52', 'ДТНМП-100-М1']
 form_of_mr = ['П','К','МПИ']
 Device.transaction do
-	(1..30).each do |i|
+	(1..70).each do |i|
 		Device.create( 
 			:uniq_number_in_ASOMI => "#{i}", 
 			:title => title[rand(title.length)], 
@@ -26,7 +26,7 @@ end
 
 
 Channel.transaction do
-	(1..90).each do |i|
+	(1..210).each do |i|
 		Channel.create(
 			:device_id => Device.first.id + rand(Device.last.id - Device.first.id + 1),
 			:title => "Канал #{rand(5).to_s}"
@@ -41,7 +41,7 @@ end
 
 
 AutoPosition.transaction do
-	(1..90).each do |i|
+	(1..210).each do |i|
 		AutoPosition.create(
 			:title => "CS01AI0#{i}",
 			:channel_id => (Channel.first.id + i - 1)

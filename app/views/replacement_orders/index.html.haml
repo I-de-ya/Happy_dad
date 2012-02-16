@@ -1,0 +1,6 @@
+- @orders.each do |order|
+	%p
+		= link_to order.title, replacement_order_path(order)
+		(
+		= order.created_at
+		)

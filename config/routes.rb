@@ -14,9 +14,12 @@ HappyDad::Application.routes.draw do
 	
 	resources :statuses
 
+  resources :replacement_orders
+
   resources :replacement_pairs
 
-  resources :replacement_orders 
+  
+
 
 	resources :logs do
 		member do
