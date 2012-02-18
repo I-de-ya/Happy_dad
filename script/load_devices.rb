@@ -1,6 +1,8 @@
 Device.delete_all
 AutoPosition.delete_all
 Channel.delete_all
+ReplacementPair.delete_all
+ReplacementOrder.delete_all
 
 title = ['Датчик избыточного давления', 'Напоромер мембранный показывающий', 'Датчик разряжения', 'Прибор регистрирующий', 'Преобразователь разности давления']
 location = [9,5,8]
@@ -57,8 +59,7 @@ end
 AutoPosition.all.each do |autoposition|
 	if Device.find(find_device_id(autoposition)).location.title == 'Место автоматизации'
 	else
-		autoposition.channel_id = nil
-		autoposition.save	
+		autoposition.delete
 	end
 end
 

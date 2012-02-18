@@ -7,7 +7,7 @@
 	|
 	= link_to "Логи СИ", logs_path
 	|
-	= link_to "Заявки (#{ReplacementOrder.count})", '#'
+	= link_to "Заявки (#{ReplacementOrder.count})", replacement_orders_path
 	.account
 		- if signed_in?
 			= @current_user.name

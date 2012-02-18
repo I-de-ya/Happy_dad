@@ -12,6 +12,7 @@ class ReplacementPairsController < ApplicationController
 
 	def destroy
 		@pair = ReplacementPair.find(params[:id]).destroy
+  		
   		flash[:success] = "Пара была удалена."
   		redirect_to replacement_orders_path
 	end

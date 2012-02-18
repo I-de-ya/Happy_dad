@@ -15,6 +15,8 @@ group :assets do
   gem 'uglifier'
 end
 
+require 'rake/dsl_definition'
+gem 'rake'
 gem 'to_xls'
 gem 'will_paginate'
 gem 'haml'

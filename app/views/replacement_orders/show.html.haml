@@ -1,5 +1,5 @@
 %p
-	%b Наименование местоположения:
+	%b Заявка №
 	= @order.title
 .scroll
 	%table
@@ -50,6 +50,6 @@
 				%td= pair.replacement.form_of_mr
 				%td= pair.replacement.prev_mr_date
 				%td= pair.replacement.next_mr_date
-				%td= link_to 'Удалить пару', pair, :confirm => 'Вы уверены?', :method => :delete
+				%td= button_to 'Вернуть в список замен, убрать из заявки', "#", :method => :get
 = link_to 'Редактировать', edit_location_path(@location)
-%p= link_to '<< Назад, к списку местоположений', locations_path
+%p= link_to '<< Назад, к списку заявок', locations_path

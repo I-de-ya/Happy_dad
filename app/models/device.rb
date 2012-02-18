@@ -8,6 +8,7 @@ class Device < ActiveRecord::Base
   has_one :replacement, :through => :replacement_pair, :source => :replacement
 
 	scope :with_next_mr_date, where('next_mr_date NOT ?', nil)
+  scope :with_no_pair, joins('LEFT JOIN replacement_pairs ON replacement_pairs.device_id = devices.id OR replacement_pairs.replacement_id = devices.id').where(:replacement_pairs => {:device_id => nil})
 
   	def self.search_and_paginate(search, search_field, page)
   		if search

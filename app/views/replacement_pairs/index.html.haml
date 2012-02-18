@@ -50,6 +50,5 @@
 				%td= pair.replacement.prev_mr_date
 				%td= pair.replacement.next_mr_date
 				%td= link_to 'Удалить пару', pair, :confirm => 'Вы уверены?', :method => :delete
-%p P.S. ?? - это поле возможно будет, а возможно и нет
 %p
-	= button_to "Создать заявку" , new_replacement_order_path, :method => :get
+	= button_to "Создать заявку (отдать подрядчику)" , new_replacement_order_path, :method => :get

@@ -3,15 +3,15 @@
 .scroll
 	%table
 		%tr
+			%td
 			%td= link_to @device.title, device_path(@device)
 			%td
 			%td
 			%td
 			%td
+			%td= @device.status.title
 			%td
-			%td
-			%td
-			%td
+			%td= @device.location.title
 			%td
 			%td
 			%td
@@ -22,7 +22,7 @@
 			%td
 			%td
 		%tr
-			%th "Уникальный номер"??(не device.id)
+			%th "Уникальный номер в АСОМИ"
 			%th "Наименование СИ"
 			%th "Тип СИ"
 			%th "Вид МР"
@@ -43,23 +43,24 @@
 			
 		- @devices.each do |device|
 			%tr
+				%td
 				%td= link_to device.title, device_path(device)
 				%td
 				%td
 				%td
 				%td
+				%td= device.status.title
 				%td
-				%td
-				%td
+				%td= device.location.title
 				%td
 				%td
 				%td
 				%td
 				%td
 				%td= link_to 'Подобрать замену', replacement_candidates_device_path(device)
-				%td
 				%td= link_to 'Редактировать', edit_device_path(device)
 				%td= link_to 'Удалить', device, :confirm => 'Вы уверены?', :method => :delete
 				%td= link_to 'Подходит для замены', make_replacement_pair_device_path(device)
-%p Тут должно быть паджинатору: [|<][<<] - 123 из 240 - [>>][>|]_[ 1 [v]]
+.digg_pagination
+	= will_paginate @devices, :previous_label => '&laquo; Туда', :next_label => 'Сюда &raquo;'
 %p P.S. ?? - это поле возможно будет, а возможно и нет
