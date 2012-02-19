@@ -7,7 +7,7 @@ class DevicesController < ApplicationController
 		session[:page_selection] = nil
 		@page = params[:page]
 		
-		@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement", "replacement_id", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "PG_metals", "subreport_number", "ENS_number", "gold", "silver", "platinum", "comment", "has_pair"]
+		@device = Device.attribute_names - ["id", "created_at","updated_at", "replacement_id", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "PG_metals", "subreport_number", "ENS_number", "gold", "silver", "platinum", "comment"]
 		@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "Уникальный номер в АСОМИ", "Вид МР"]
 		
 		#@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement", "replacement_id"]
@@ -35,8 +35,8 @@ class DevicesController < ApplicationController
 		params[:page] ||= session[:page_selection]
 		session[:page_selection] = nil
 		@page = params[:page]
-		@device = Device.attribute_names - ["id", "created_at","updated_at","has_replacement", "replacement_id"]
-		@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "Уникальный номер в АСОМИ", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "Золото", "Серебро", "Платина", "PG_metals", "subreport_number", "ENS_number", "Комментарии", "form_of_mr", "has_pair"]
+		@device = Device.attribute_names - ["id", "created_at","updated_at", "replacement_id", "input_range", "input_measurement_units", "output_range", "output_measurement_units", "model", "year_of_production", "beginning_operation_year", "changeover_input_range", "changeover_input_measurement_units", "passport", "passport_store_place", "passport_electronic_version", "tech_description", "tech_description_store_place", "tech_description_electronic_version", "user_manual", "user_manual_store_place", "user_manual_electronic_version", "PG_metals", "subreport_number", "ENS_number", "gold", "silver", "platinum", "comment"]
+		@names = ["Наименование СИ", "Статус", "Местонахождение СИ", "Тип СИ", "Инвентарный номер", "Заводской номер", "Подразделение МР", "Дата следующей МР", "Дата предыдущей МР", "Параметр взаимозаменяемости", "Уникальный номер в АСОМИ", "Вид МР"]
 		@attributes = [@names, @device].transpose
 		#attributes = [ @names,@device ]
 
@@ -111,12 +111,12 @@ class DevicesController < ApplicationController
 	def replacement_candidates
 		@device = Device.find(params[:id])
 		session[:current_device_id] = @device.id
-		
+=begin		
 		@devices = Device.with_no_pair.where(:status_id => 14).where(:replace_param => @device.replace_param).where('devices.id <> ?', @device.id).paginate(:per_page => 15, :page => params[:page])
-
-=begin
-		@devices = (Device.with_no_pair.where(:status_id => 14).where(:replace_param => @device.replace_param) - [@device]).page(params[:page]).per_page(20)
 =end
+		@devices = Device.with_no_pair.where(:replace_param => @device.replace_param).where('devices.id <> ?', @device.id).paginate(:per_page => 15, :page => params[:page])
+
+
 	end
 	
 	def make_replacement_pair
