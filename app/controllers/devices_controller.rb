@@ -111,8 +111,8 @@ class DevicesController < ApplicationController
 	def replacement_candidates
 		@device = Device.find(params[:id])
 		session[:current_device_id] = @device.id
-		# Здесь должен быть where('id NOT ?', @device.id) структура
-		@devices = Device.with_no_pair.where(:status_id => 14).where(:replace_param => @device.replace_param).paginate(:per_page => 15, :page => params[:page])
+		
+		@devices = Device.with_no_pair.where(:status_id => 14).where(:replace_param => @device.replace_param).where('devices.id <> ?', @device.id).paginate(:per_page => 15, :page => params[:page])
 
 =begin
 		@devices = (Device.with_no_pair.where(:status_id => 14).where(:replace_param => @device.replace_param) - [@device]).page(params[:page]).per_page(20)
